@@ -10,5 +10,10 @@
 
 .card-size{
     max-width: 348px;
-    max-height: 540px;
+    max-height: 276px;
+}
+
+p {
+    margin: 0;
+    padding: 0;
 }

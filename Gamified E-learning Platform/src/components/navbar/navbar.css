@@ -1,0 +1,22 @@
+.nav_bg {
+    background: #E1E1E1;
+    border-radius: 24px;
+    height: 90px;
+    width: 626px;
+    padding: 8px;
+    display: flex;
+    justify-items: center !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+
+}
+
+
+.navbar-nav {
+    display: flex;
+    flex-direction: row;
+    overflow: auto; /* Prevent items from wrapping onto multiple lines */
+    justify-content: space-between;
+    flex-wrap: nowrap !important; /* Prevent items from wrapping onto multiple lines */
+}

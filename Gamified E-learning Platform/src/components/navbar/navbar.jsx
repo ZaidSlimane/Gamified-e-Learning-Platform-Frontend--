@@ -4,6 +4,7 @@ import './navbar.css'
 const Navbar =  () => {
     return (
         <>
+
             <nav className="navbar navbar-expand-lg navbar-light nav_bg">
                 <ul className="navbar-nav">
                     <li className="nav-item active">

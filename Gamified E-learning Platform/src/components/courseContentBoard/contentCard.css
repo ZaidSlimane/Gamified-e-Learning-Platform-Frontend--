@@ -1,0 +1,21 @@
+.shadow{
+    fill: #151D2A;
+    filter: drop-shadow(5px 4px 0px #01F401);
+    stroke: #E1E1E1;
+    stroke-width: 1px;
+}
+
+.image-size{
+    max-width: 100%;
+    height: 185px;
+}
+
+.card-size{
+    max-width: 348px;
+    max-height: 276px;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}

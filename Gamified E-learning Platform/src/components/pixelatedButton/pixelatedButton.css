@@ -1,0 +1,102 @@
+/* Inspirations
+	- https://eto2d.tumblr.com/post/133756302345/pixel-os-device
+	- https://lukeb-co-uk.translate.goog/blog/2022/01/17/pixelated-rounded-corners-with-css-clip-path
+*/
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+img {
+    image-rendering: pixelated;
+}
+.outerclip {
+    clip-path: polygon(
+            0 8px, 4px 8px, 4px 4px, 8px 4px, 8px 0,
+            calc(100% - 8px) 0, calc(100% - 8px) 4px, calc(100% - 4px) 4px, calc(100% - 4px) 8px, 100% 8px,
+            100% calc(100% - 8px), calc(100% - 4px) calc(100% - 8px), calc(100% - 4px) calc(100% - 4px), calc(100% - 8px) calc(100% - 4px), calc(100% - 8px) 100%,
+            8px 100%, 8px calc(100% - 4px), 4px calc(100% - 4px), 4px calc(100% - 8px), 0 calc(100% - 8px)
+    );
+
+    padding: 4px;
+    background: #222;
+}
+.innerclip {
+    clip-path: polygon(
+            0 4px, 4px 4px,4px 0,
+            calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px,
+            100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%,
+            4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px)
+    );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: #FF00C7;
+    box-shadow: inset 0 0 0 4px #F99ECF;
+    color: #E1E1E1;
+}
+
+/**/
+button {
+    border: none;
+    font-size: 24px;
+    text-transform: uppercase;
+    font-family: 'VT323', monospace;
+    cursor: pointer;
+    transition: transform .05s;
+}
+button .innerclip {
+    transition: background-color .075s;
+}
+button:active {
+    transform: translateY(4px);
+}
+button:active .innerclip {
+    background-color: #01F401;
+}
+/**/
+
+button.v2 {
+    padding-bottom: 8px;
+}
+button.v3 {
+    position: relative;
+}
+button.v3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: block;
+    width: calc(100% - 8px);
+    height: 33%;
+    background-color: rgba(66,66,66, .2);
+}
+/**/
+button.alert {
+    position: relative;
+}
+button.alert::after {
+    content: attr(data-alert);
+    position: absolute;
+    top: 0; right: 0;
+    display: block;
+    font-size: 12px;
+}
+
+/**/
+.ico {
+    width: 64px;
+    height: 64px;
+}
+.ico .innerclip {
+    background: #EEE;
+    font-size: 32px;
+}

@@ -29,7 +29,7 @@ function LandingPage() {
                 </div>
 
                 <h1 className="text-center mt-3 mb-3">
-                    LET’S START
+                    LET’S STARtt
                     LEARNING
                     COMPUTER SCIENCE
                 </h1>

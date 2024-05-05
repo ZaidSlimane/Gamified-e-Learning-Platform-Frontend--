@@ -1,0 +1,36 @@
+.image-containerSignUp {
+    margin-top: 10px;
+    margin-right: 40px;
+
+}
+
+.SignUpImage {
+    max-width: 100%;
+    max-height: 150px;
+}
+
+.extra-text {
+    color: #FF00C7 !important;
+    font-size: 16px;
+    margin-bottom: 0px !important;
+    padding-top: 0px !important;
+    font-weight: lighter
+}
+
+.extra-text2 {
+    color: white;
+}
+
+.text-link {
+    color: #FF00C7 !important;
+}
+
+.input-header{
+    color: #01F401;
+    padding-top: 5px;
+    font-size: 18px;
+    padding-left: 4px;
+    font-family: "Space Grotesk";
+    margin-bottom: 6px !important;
+
+}

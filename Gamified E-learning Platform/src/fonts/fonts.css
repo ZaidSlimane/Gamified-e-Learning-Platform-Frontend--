@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'Space Grotesk';
+    src: url('SpaceGrotesk-VariableFont_wght.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'VT323-Regular';
+    src: url('VT323-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Days One';
+        src: url('DaysOne-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url("Montserrat-VariableFont_wght.ttf") format('truetype');
+}

@@ -1,0 +1,26 @@
+.input-header{
+    color: #01F401;
+    padding-top: 5px;
+    font-size: 18px;
+    padding-left: 4px;
+    font-family: "Space Grotesk";
+    margin-bottom: 6px !important;
+
+}
+.input-wrapper {
+    display: inline-block;
+    text-align: left;
+    margin-right: 10px;
+}
+
+.image-containerLogin {
+    margin-top: 100px;
+    margin-right: 40px;
+
+}
+.extra-text{
+    color: white;
+}
+.text-link{
+    color: #FF00C7 !important;
+}

@@ -1,7 +1,7 @@
 .nav_bg {
     background: #E1E1E1;
     border-radius: 24px;
-    height: 90px;
+    height: 60px;
     width: 626px;
     padding: 8px;
     display: flex;
@@ -17,6 +17,11 @@
     display: flex;
     flex-direction: row;
     overflow: auto; /* Prevent items from wrapping onto multiple lines */
-    justify-content: space-between;
+    justify-content: center; /* Center the navbar items */
     flex-wrap: nowrap !important; /* Prevent items from wrapping onto multiple lines */
+}
+
+.navbar-nav li {
+    margin: 0 20px; /* Adjust this value to increase or decrease the distance between elements */
+    font-weight: bolder;
 }

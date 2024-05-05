@@ -1,0 +1,45 @@
+.shadow{
+    fill: #F8F8F8;
+    filter: drop-shadow(5px 4px 0px #01F401);
+    background-color: white;
+    border-radius: 12px;
+}
+
+.chapter-course-title{
+    padding-top: 10px;
+    font-family: Montserrat;
+    font-size: 26px;
+    font-weight: bolder;
+    text-align: center !important;
+
+}
+
+
+.shadow2 {
+    background-color: #1B2232;
+    box-shadow: 5px 4px 0px #01F401;
+}
+.white-border{
+    border: white solid 2px;
+
+}
+
+.no-shadow{
+    background-color:#1B2232;
+
+}
+.course-content{
+    border-radius: 12px;
+}
+
+.search-container {
+    position: relative;
+    width: 100% !important;
+}
+
+.grey-bg{
+    background-color: #5E677A;
+    filter: drop-shadow(5px 4px 0px white);
+    width: 60%;
+
+}

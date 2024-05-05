@@ -1,0 +1,48 @@
+.input-container {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+
+}
+
+.input {
+    background-color: #1b222a;
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    outline: none;
+    height: 50px;
+    width: 400px;
+    border-color: #cccccc;
+    padding-left: 22px;
+    padding-bottom: 4px;
+    font-family: "Space Grotesk";
+}
+
+.eye-icon-container {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #ccc;
+    padding-bottom: 4px;
+padding-right: 10px;
+}
+
+
+
+.input:focus {
+    /* border-image: linear-gradient(to bottom, #01F401, #20A970) 1;*/
+    border-radius: 6px !important;
+    border-color: #01F401;
+    font-family: "Space Grotesk";
+
+
+}
+
+
+
+.custom-font {
+    font-family: 'space-grotesk';
+}

@@ -1,14 +1,15 @@
 import React, {useState} from "react";
 import './pixelatedButton.css';
+import '../../../src/fonts/fonts.css'
 
 
-function PixelatdButton (){
+function PixelatdButton ({text}){
 
 
     return (
         <>
             <button className="outerclip v2">
-                <div className="innerclip">Start</div>
+                <div className="innerclip">{text}</div>
             </button>
 
         </>

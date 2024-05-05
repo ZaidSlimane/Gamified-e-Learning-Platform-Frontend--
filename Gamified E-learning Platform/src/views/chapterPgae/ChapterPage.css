@@ -1,0 +1,70 @@
+.shadow{
+    fill: #F8F8F8;
+    filter: drop-shadow(5px 4px 0px #01F401);
+    background-color: white;
+    border-radius: 12px;
+}
+
+
+.chapter-course-title{
+    padding-top: 10px;
+    font-family: Montserrat;
+    font-size: 26px;
+    font-weight: bolder;
+    text-align: center !important;
+
+}
+.search-container {
+    position: relative;
+    width: 100% !important;
+}
+
+.main-component{
+}
+
+
+.course-decription{
+    padding-left: 70px !important;
+}
+
+.main-component{
+    border-radius: 20px;
+    border: 1px solid white;
+    border-bottom-width: 5px;
+    font-family: Montserrat;
+}
+
+h4{
+    font-weight: bolder !important;
+    margin-top: 35px !important;
+}
+p{
+
+    font-size: 24px;
+}
+
+.text-justify{
+    text-align: justify;
+
+}
+
+.description-text{
+    color: #E5FFE5;
+}
+
+.shadow2 {
+    background-color: #1B2232;
+    box-shadow: 5px 4px 0px #01F401;
+}
+.white-border{
+    border: white solid 2px;
+
+}
+
+.no-shadow{
+    background-color:#1B2232;
+
+}
+.course-content{
+    border-radius: 12px;
+}

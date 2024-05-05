@@ -1,0 +1,44 @@
+.main-component{
+    background-color: #1B2232;
+}
+
+.course-decription{
+    padding-left: 70px !important;
+}
+
+.main-component{
+    border-radius: 20px;
+    border: 1px solid white;
+    border-bottom-width: 5px;
+    font-family: Montserrat;
+}
+
+h4{
+    font-weight: bolder !important;
+    margin-top: 35px !important;
+}
+p{
+
+    font-size: 24px;
+    text-align: justify;
+}
+.description-text{
+    color: #E5FFE5;
+}
+
+.shadow {
+    background-color: #1B2232;
+    box-shadow: 5px 4px 0px #01F401;
+}
+.white-border{
+    border: white solid 2px;
+
+}
+
+.no-shadow{
+    background-color:#1B2232;
+
+}
+.course-content{
+    border-radius: 12px;
+}

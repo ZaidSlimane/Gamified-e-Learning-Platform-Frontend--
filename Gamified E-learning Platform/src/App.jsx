@@ -1,6 +1,4 @@
-import LandingPage from "./views/landingPage/LandingPage.jsx";
-import Navbar from "./components/navbar/navbar.jsx";
-import CourseSection from "./components/courseSection/courseSection.jsx";
+import LeaveQuestionPage from "./views/leaveQuestionPage/LeaveQuestionPage.jsx";
 
 
 function App() {
@@ -8,8 +6,8 @@ function App() {
 
   return (
 <>
-  <LandingPage>
-  </LandingPage>
+  <LeaveQuestionPage>
+  </LeaveQuestionPage>
 
 </>
 

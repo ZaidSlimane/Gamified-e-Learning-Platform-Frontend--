@@ -1,0 +1,47 @@
+
+
+.shadow {
+    fill: #F8F8F8;
+}
+
+.search-container {
+    position: relative;
+    width: 50%;
+}
+
+.search-icon {
+    position: absolute;
+    left: 10px; /* Adjust the position of the icon */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888; /* Adjust icon color */
+}
+
+.search-bar {
+    border-radius: 10px;
+    padding: 10px 10px 10px 60px; /* Adjust left padding to move the text to the right */
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    background: #F8F8F8;
+    font-family: Inter;
+}
+
+
+/* Apply drop shadow effect to an inner element */
+.search-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    filter: drop-shadow(5px 4px 0px #01F401);
+}
+
+
+.search-icon{
+    padding-bottom:3px;
+    padding-left: 10px;
+}

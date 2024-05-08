@@ -18,7 +18,8 @@
     margin-right: 40px;
 
 }
-.extra-text{
+.extra-textLogin{
+    text-align: center !important;
     color: white;
 }
 .text-link{

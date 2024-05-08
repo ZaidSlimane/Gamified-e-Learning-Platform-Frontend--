@@ -6,3 +6,16 @@
 .stars{
 padding-top: 6px;
 }
+
+.profile-pic{
+    height: 60px !important;
+    margin-left: 10px;
+}
+
+.username{
+    font-family: Montserrat;
+    font-size: 22px;
+    color: white;
+    margin-bottom: 0;
+    margin-right: 8px;
+}

@@ -7,6 +7,7 @@ import CourseToJoinCard from "../../components/courseToJoinCard/courseToJoinCrad
 import SearchBar from "../../components/searchBar/SearchBar.jsx";
 import {useNavigate} from "react-router-dom";
 import RootContainer from "../../utils/rootContainerModule.jsx";
+import axios from "axios";
 
 async function fetchReviews(courseId) {
     const response = await fetch(`http://127.0.0.1:8000/api/course/${courseId}/reviews`);
@@ -25,12 +26,50 @@ async function fetchEnrollments(courseId) {
     return totalEnrollments;
 }
 
-
 function CoursesPage() {
-    const navigate = useNavigate(); // Initialize useNavigate
-    const [courses, setCourses] = useState([]);
+    const navigate = useNavigate();
+    let [courses, setCourses] = useState([]);
     const [displayCount, setDisplayCount] = useState(6);
     const [isExpanded, setIsExpanded] = useState(false);
+
+    const getToken = () => {
+        return localStorage.getItem('token');
+    };
+    const [userData, setuserData] = useState('');
+    const [loggedIn, setloggedIn] = useState('');
+
+    async function checkloggedIn() {
+        try {
+            const token = getToken()
+            const roleResponse = await axios.get('http://127.0.0.1:8000/api/home/', {
+                headers: {
+                    Authorization: `Bearer ${token}` // Send token as bearer code
+                }
+
+            });
+            const data = roleResponse.data;
+            if (data.user.groups.length > 0) {
+                setuserData(data);
+                setloggedIn(true);
+                const response = await fetch(`http://127.0.0.1:8000/api/student/${data.user.id}/notenrolled`);
+                let enrollments = await response.json();
+                for (let course of enrollments) {
+                    course.stars = await fetchReviews(course.id);
+                    course.enrollments = await fetchEnrollments(course.id);
+                }
+                console.log(enrollments)
+                setCourses(enrollments);
+
+            } else {
+                setloggedIn(false);
+            }
+        } catch
+            (error) {
+            console.error('Login error:', error);
+            setError(true);
+            return false
+        }
+    }
 
     useEffect(() => {
         fetch('http://127.0.0.1:8000/api/courses/')
@@ -41,7 +80,8 @@ function CoursesPage() {
                     course.enrollments = await fetchEnrollments(course.id);
                 }
                 setCourses(courses);
-            });
+                return checkloggedIn();  // Move the checkloggedIn call here
+            })
     }, []);
 
     const handleSignInClick = () => {
@@ -61,10 +101,24 @@ function CoursesPage() {
                     <div className="col-auto">
                         <Navbar></Navbar>
                     </div>
-                    <div className="col-auto d-flex align-items-center" style={{marginLeft:"-60px"}}>
-                        <PixelatdButton className="btn btn-primary me-2" type="submit" text="Register" onClick={handleSignUpClick}></PixelatdButton>
-                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                        <PixelatdButton className="btn btn-primary" type="submit"text="Sign in" onClick={handleSignInClick} ></PixelatdButton>
+                    <div className="col-auto d-flex align-items-center" style={{marginLeft: "-60px"}}>
+                        {loggedIn ? (
+                            <>
+                                <p className="username">{userData.user.username}</p>
+                                <img
+                                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                                    alt="User Avatar" className="rounded-circle profile-pic"/>
+                            </>
+                        ) : (
+                            <>
+                                <PixelatdButton className="btn btn-primary me-2" type="submit" text="Register"
+                                                onClick={handleSignUpClick}></PixelatdButton>
+                                <p>      </p>
+                                <PixelatdButton className="btn btn-primary" type="submit" text="Sign in"
+                                                onClick={handleSignInClick}></PixelatdButton>
+                            </>
+                        )}
+
                     </div>
                 </div>
                 <div className={"mb-5  d-flex justify-content-center"} style={{marginRight: "20px"}}>
@@ -79,7 +133,7 @@ function CoursesPage() {
                                 stars={course.stars}
                                 summary={course.courseSummary}
                                 enrollments={course.enrollments}
-                                id = {course.id}
+                                id={course.id}
                             />
                         </div>
                     ))}

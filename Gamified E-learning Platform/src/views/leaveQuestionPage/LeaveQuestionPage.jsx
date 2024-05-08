@@ -5,6 +5,7 @@ import "./LeaveQuestionPage.css";
 import SearchBar from "../../components/searchBar/SearchBar.jsx";
 
 import Navbar from "../../components/navbar/navbar.jsx";
+import PixelatdButton from "../../components/pixelatedButton/pixelatedButton.jsx";
 
 
 function LeaveQuestionPage() {
@@ -22,21 +23,25 @@ function LeaveQuestionPage() {
                         <SearchBar/>
                     </div>
                 </div>
-                <div className="shadow  text-center mt-5">
+                <div className="shadow text-center mt-5 p-2">
                     <p className="chapter-course-title ">Linux Fundamentals</p>
                 </div>
 
 
                 <div className="shadow shadow2 white-border text-white course-content pt-4 mt-5 ps-4">
-                    <div className="no-shadow">
-                        <div className="shadow grey-bg ">
-                            <p className="text-center">Chapter 1: System management </p>
-
+                    <div className="no-shadow   d-flex justify-content-center">
+                        <div className=" grey-bg drop-shadow shadow mb-5 p-2">
+                            <p className="text-center chapter-title">Chapter 1: System management </p>
                         </div>
+                    </div>
+                    <div className="no-shadow d-flex justify-content-center mb-xxl-5 ">
+                        <textarea type="text" className="grey-bg question p-3"/>
                     </div>
 
                 </div>
-
+                <div className="mt-4 d-flex justify-content-center">
+                <PixelatdButton text="Submit"></PixelatdButton>
+                </div>
             </RootContainer>
         </>)
 }

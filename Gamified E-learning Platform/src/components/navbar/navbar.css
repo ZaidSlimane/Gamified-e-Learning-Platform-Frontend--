@@ -25,3 +25,7 @@
     margin: 0 20px; /* Adjust this value to increase or decrease the distance between elements */
     font-weight: bolder;
 }
+
+.nav-link:hover{
+    cursor: pointer;
+}

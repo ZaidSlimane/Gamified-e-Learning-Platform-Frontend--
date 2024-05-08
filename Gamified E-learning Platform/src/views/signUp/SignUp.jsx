@@ -38,8 +38,8 @@ function SignUp() {
                     </div>
                     <br/>
                     <div className="input-wrapper" style={{marginTop: '10px'}}>
-                        <p className="extra-text">Password must contain a minimum of 8 characters</p>
-                        <p className="extra-text">Password must contain at least one symbol e.g. @, !</p>
+                        <p className="extra-textl">Password must contain a minimum of 8 characters</p>
+                        <p className="extra-textl">Password must contain at least one symbol e.g. @, !</p>
                     </div>
                     <br/>
                     <br/>

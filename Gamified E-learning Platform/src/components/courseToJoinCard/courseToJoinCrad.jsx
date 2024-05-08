@@ -1,34 +1,51 @@
 import React from 'react';
 import './courseToJoinCrad.css';
 import PixelatdButton from "../pixelatedButton/pixelatedButton.jsx";
+import {useNavigate} from "react-router-dom"; // Import useNavigate
 
-const CourseToJoinCard = () => {
+
+const CourseToJoinCard = ({imageUrl, courseName, stars, summary, enrollments, id}) => {
+    // Function to generate stars based on the number
+    const renderStars = (stars) => {
+        const starArray = [];
+        for (let i = 0; i < stars; i++) {
+            starArray.push(<img key={i} src="../../../public/star.svg" alt="Star"/>);
+        }
+        return starArray;
+    };
+    const navigate = useNavigate(); // Initialize useNavigate
+
+
     return (
+
         <div className="card p-3 card-size shadow">
             <div className="card-body">
-                <div className="image-container image-size">
-                    <img src="../../../public/courseToJoinImg.svg"/>
+                <div clasassName="image-container image-size">
+                    <img src={imageUrl} alt="Course" className="image-size"/>
                 </div>
-                <div className="row mt-1">
+                <div className="row mt-3">
                     <div className="col NTIC">NTIC</div>
-                    <div className="col text-end stars"><img src="../../../public/star.svg"/><img src="../../../public/star.svg"/><img src="../../../public/star.svg"/><img src="../../../public/star.svg"/><img src="../../../public/star.svg"/></div>
-                </div>
-                <div className="row mt-2">
-                    <div className="col">
-                        <h5 className={"course-title"}>Game Development Programming with Java</h5>
+                    <div className="col text-end stars">
+                        {renderStars(stars)}
                     </div>
                 </div>
                 <div className="row mt-2">
                     <div className="col">
-                        <p className={"course-to-join-card-p"}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <h5 className={"course-title"}>{courseName}</h5>
+                    </div>
+                </div>
+                <div className="row mt-2">
+                    <div className="col summary-text">
+                        <p className={"course-to-join-card-p"}>{summary}</p>
                     </div>
                 </div>
                 <div className="row mt-2 d-flex justify-content-center align-items-center">
                     <div className="col">
-                        <PixelatdButton text={"JOIN"} className="btn btn-primary" type="submit">Join</PixelatdButton>
+                        <PixelatdButton text={"JOIN"} className="btn btn-primary" type="submit"
+                                        onClick={() => navigate(`/enroll/${id}`)}>Join</PixelatdButton>
                     </div>
                     <div className="col text-end enrolled-text">
-                        2500 Enrolled
+                        {enrollments} Enrolled
                     </div>
                 </div>
             </div>

@@ -2,7 +2,7 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   --startBackgroundColor: #142334;
   --endBackgroundColor: #040404;
-  --vertical-gradient: linear-gradient(180deg, var(--startBackgroundColor), var(--endBackgroundColor));
+  --vertical-gradient: linear-gradient(90deg, var(--startBackgroundColor), var(--endBackgroundColor));
 
 }
 

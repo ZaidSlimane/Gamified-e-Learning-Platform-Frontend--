@@ -8,26 +8,33 @@ import Circle from "../../components/Circle.jsx";
 import "@fontsource/inter"
 import "./LandingPage.css"
 import '../../../src/fonts/fonts.css'
-
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 function LandingPage() {
+    const navigate = useNavigate(); // Initialize useNavigate
 
+    const handleSignInClick = () => {
+        navigate("/login"); // Navigate to /login when Sign in is clicked
+    }
+    const handleSignUpClick = () => {
+        navigate("/SignUp"); // Navigate to /login when Sign in is clicked
+    }
 
     return (
         <>
-
             <RootContainer>
-                <div className="row g-0 navigation-header justify-content-between align-items-center mt-3"
+                <div className="row g-0 navigation-header justify-content-between align-items-center mt-5"
                      style={{marginBottom: '100px'}}>
                     <div className="col-auto">
-                        <h1>LOGO</h1>
+                        <img src="../../../public/logo.svg"/>
                     </div>
                     <div className="col-auto">
                         <Navbar></Navbar>
                     </div>
-                    <div className="col-auto d-flex align-items-center">
-                        <button className="btn btn-primary me-2" type="submit">Register</button>
-                        <button className="btn btn-primary" type="submit">Sign in</button>
+                    <div className="col-auto d-flex align-items-center" style={{marginLeft:"-60px"}}>
+                        <PixelatdButton className="btn btn-primary me-2" type="submit" text="Register" onClick={handleSignUpClick}></PixelatdButton>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                        <PixelatdButton className="btn btn-primary" type="submit"text="Sign in" onClick={handleSignInClick} ></PixelatdButton>
                     </div>
                 </div>
 

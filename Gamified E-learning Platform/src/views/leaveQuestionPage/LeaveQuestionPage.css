@@ -6,7 +6,6 @@
 }
 
 .chapter-course-title{
-    padding-top: 10px;
     font-family: Montserrat;
     font-size: 26px;
     font-weight: bolder;
@@ -39,7 +38,29 @@
 
 .grey-bg{
     background-color: #5E677A;
-    filter: drop-shadow(5px 4px 0px white);
     width: 60%;
 
 }
+
+.drop-shadow{
+    filter: drop-shadow(5px 4px 0px white);
+
+}
+
+p{
+    margin-bottom: 0px !important;
+}
+
+.chapter-title{
+font-family: Montserrat;
+    font-weight: bold;
+    font-size: 20px;
+}
+.question{
+    color: white;
+    font-size: 20px;
+    border-radius: 10px;
+    min-height: 250px;
+    vertical-align: top;
+}
+

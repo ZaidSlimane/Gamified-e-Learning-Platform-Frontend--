@@ -23,7 +23,7 @@ function ChapterPage() {
                         <SearchBar/>
                     </div>
                 </div>
-                <div className="shadow  text-center mt-5">
+                <div className="shadow  text-center mt-5 pb-2">
                     <p className="chapter-course-title ">Linux Fundamentals</p>
                 </div>
                 <div className={"main-component mt-xl-5 mb-5"}>

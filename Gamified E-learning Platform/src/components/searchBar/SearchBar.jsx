@@ -4,7 +4,7 @@ import "./SearchBar.css"; // Import CSS file for styling
 
 function SearchBar() {
     return (
-        <div className="search-container shadow">
+        <div className="search-container shadow rounded-4">
             <div className="search-icon">
                 <FaSearch/>
             </div>

@@ -6,7 +6,9 @@
 .image-size{
     max-width: 100%;
     height: 185px;
+    border-radius: 18px;
 }
+
 
 .card-size{
     max-width: 348px !important;
@@ -31,4 +33,13 @@
 
 .course-title{
     font-family: "Days One";
+}
+
+.summary-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: calc(1.8em * 4); /* Adjust 1.2em to match your line-height */
 }

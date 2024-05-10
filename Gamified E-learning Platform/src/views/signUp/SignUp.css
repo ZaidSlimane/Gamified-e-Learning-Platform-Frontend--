@@ -11,7 +11,7 @@
 
 .extra-textl {
     color: #FF00C7 !important;
-    font-size: 16px;
+    font-size: 16px !important;
     margin-bottom: 0px !important;
     padding-top: 0px !important;
     font-weight: lighter
@@ -19,6 +19,8 @@
 
 .extra-text2 {
     color: white;
+    font-size: 16px;
+
 }
 
 .text-link {

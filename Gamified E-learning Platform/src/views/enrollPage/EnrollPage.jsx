@@ -40,6 +40,7 @@ function EnrollPage() {
     const [supervisorJob, setSupervisorJob] = useState(null);
     const [chapters, setChapters] = useState([]);
     const [enrolled, setEnrolled] = useState(null);
+    const [currentChapterId,setcurrentChapterId] = useState(null);
 
 
     useEffect(() => {
@@ -61,13 +62,22 @@ function EnrollPage() {
     }, []);
 
 
-
+    const getCurrentChapter = async (courseid) => {
+        const response = await axios.get(`http://127.0.0.1:8000/api/enrollments/${courseid}`);
+        const currentChapterId = response.data.passed_chapter + 1;
+        const chaptersResponse = await axios.get(`http://127.0.0.1:8000/api/courses/${courseId}/chapters`)
+        const chapters = chaptersResponse.data
+        chapters.sort((a, b) => a.id - b.id);
+        setcurrentChapterId(chapters[currentChapterId - 1].id)
+        return chapters[currentChapterId - 1].id;
+    }
 
     const getToken = () => {
         return localStorage.getItem('token');
     };
     const [userData, setuserData] = useState('');
     const [loggedIn, setloggedIn] = useState('');
+    const [enrolledCourse, setEnrolledCourse] = useState('')
 
     async function checkloggedIn() {
         try {
@@ -94,27 +104,29 @@ function EnrollPage() {
 
 
     async function checkEnrolled(id) {
-            try {
-                const token = getToken();
-                const enrollmentsResponse = await axios.get(`http://127.0.0.1:8000/api/student/${id}/enrollments`, {
-                    headers: {
-                        Authorization: `Bearer ${token}` // Send token as bearer code
-                    }
-                });
-                const enrollments = enrollmentsResponse.data;
-                console.log(enrollments)
-                const isEnrolled = enrollments.some(enrollment => Number(enrollment.course) === Number(courseId));
+        try {
+            const token = getToken();
+            const enrollmentsResponse = await axios.get(`http://127.0.0.1:8000/api/student/${id}/enrollments`, {
+                headers: {
+                    Authorization: `Bearer ${token}` // Send token as bearer code
+                }
+            });
+            const enrollments = enrollmentsResponse.data;
+            const isEnrolled = enrollments.some(enrollment => Number(enrollment.course) === Number(courseId));
+            const Enrollmentdata = enrollments.find(enrollment => Number(enrollment.course) === Number(courseId));
+            setEnrolledCourse(Enrollmentdata)
 
-                setEnrolled(isEnrolled);
-                if (isEnrolled)
-                    navigate('/')
-            } catch (error) {
+            console.log("Is Enrolled:", isEnrolled); // Add this line for debugging
 
-                console.error('Enrollment check error:', error);
-                return false;
-
+            setEnrolled(isEnrolled);
+            if (isEnrolled){
+                getCurrentChapter(Enrollmentdata.course)
+            }
+        } catch (error) {
+            console.error('Enrollment check error:', error);
         }
     }
+
 
     async function enroll(courseId, studentId) {
         try {
@@ -147,6 +159,17 @@ function EnrollPage() {
             navigate("/login")
         }
         enroll(courseId, userData.user.id);
+    }
+
+    const handleContinueOnClick = async () => {
+        const response = await axios.get(`http://127.0.0.1:8000/api/enrollments/${enrolledCourse.id}`);
+        const currentChapter = response.data.passed_chapter +1
+        const chaptersResponse = await axios.get(`http://127.0.0.1:8000/api/courses/${courseId}/chapters`)
+        const chapters = chaptersResponse.data
+        chapters.sort((a, b) => a.id - b.id);
+
+        navigate(`chapter/${chapters[currentChapter - 1].id}`)
+
     }
 
 
@@ -193,9 +216,39 @@ function EnrollPage() {
                             <h4>Course Content</h4>
                             <div className="shadow white-border  course-content pt-4 ps-4 chapters">
                                 <div className="no-shadow pe-4">
-                                    {chapters.map((chapter, index) => (
-                                        <p key={index} className="ps-2 text-start  paragraph">· {chapter.chapterName}</p>
-                                    ))}
+
+                                    {chapters.map((chapter, index) => {
+                                        let symbol = '·';
+                                        let className = 'ps-2 text-start paragraph';
+                                        let onClick = null;
+
+                                        if (chapter.id === currentChapterId) {
+                                            console.log(currentChapterId)
+
+                                            className = 'current-chapter-class';
+                                        } else if (chapter.id > currentChapterId) {
+                                            className = 'higher-id-class';
+                                            symbol = '🔒'; // replace with your lock symbol
+                                        } else {
+                                            className = 'lower-id-class';
+                                            symbol = '✅'; // replace with your check mark symbol
+                                            onClick = () => {
+                                                navigate(`chapter/${chapter.id}`);
+                                            };
+                                        }
+
+                                        return (
+                                            <p key={index} className={className} onClick={onClick} id="p">
+                                                {symbol} {chapter.chapterName}
+                                            </p>
+                                        );
+                                    })}
+
+
+                                    {/*{chapters.map((chapter, index) => (*/}
+                                    {/*    <p key={index}*/}
+                                    {/*       className="ps-2 text-start  paragraph">· {chapter.chapterName}</p>*/}
+                                    {/*))}*/}
 
                                 </div>
                             </div>
@@ -204,11 +257,13 @@ function EnrollPage() {
                     </div>
                 </div>
                 <div className="d-flex justify-content-center mt-4 mb-5">
-                    <PixelatdButton text="ENROLL" onClick={handleEnrollOnClick}></PixelatdButton>
+                    {enrolled ? (
+                        <PixelatdButton text="KEEP MAKING PROGRESS" onClick={handleContinueOnClick}></PixelatdButton>
+                    ) : (
+                        <PixelatdButton text="ENROLL" onClick={handleEnrollOnClick}></PixelatdButton>
+                    )}
                 </div>
-
             </RootContainer>
         </>);
 }
-
 export default EnrollPage;

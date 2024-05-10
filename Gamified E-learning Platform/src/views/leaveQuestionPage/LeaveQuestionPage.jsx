@@ -20,18 +20,18 @@ function LeaveQuestionPage() {
                         <Navbar></Navbar>
                     </div>
                     <div className="p-2">
-                        <SearchBar/>
+                        <SearchBar width="100%"/>
                     </div>
                 </div>
-                <div className="shadow text-center mt-5 p-2">
-                    <p className="chapter-course-title ">Linux Fundamentals</p>
+                <div className="shadow bg-white text-center mt-5 p-2">
+                    <p className="chapter-course-title-q p-q">Linux Fundamentals</p>
                 </div>
 
 
                 <div className="shadow shadow2 white-border text-white course-content pt-4 mt-5 ps-4">
                     <div className="no-shadow   d-flex justify-content-center">
                         <div className=" grey-bg drop-shadow shadow mb-5 p-2">
-                            <p className="text-center chapter-title">Chapter 1: System management </p>
+                            <p className="text-center chapter-title p-q">Chapter 1: System management </p>
                         </div>
                     </div>
                     <div className="no-shadow d-flex justify-content-center mb-xxl-5 ">

@@ -1,15 +1,15 @@
 .shadow{
     fill: #F8F8F8;
     filter: drop-shadow(5px 4px 0px #01F401);
-    background-color: white;
     border-radius: 12px;
 }
 
-.chapter-course-title{
+.chapter-course-title-q{
     font-family: Montserrat;
     font-size: 26px;
     font-weight: bolder;
     text-align: center !important;
+    padding-top: 0px;
 
 }
 
@@ -31,10 +31,7 @@
     border-radius: 12px;
 }
 
-.search-container {
-    position: relative;
-    width: 100% !important;
-}
+
 
 .grey-bg{
     background-color: #5E677A;
@@ -47,7 +44,7 @@
 
 }
 
-p{
+.p-q{
     margin-bottom: 0px !important;
 }
 

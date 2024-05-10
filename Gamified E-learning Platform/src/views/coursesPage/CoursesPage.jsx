@@ -122,7 +122,7 @@ function CoursesPage() {
                     </div>
                 </div>
                 <div className={"mb-5  d-flex justify-content-center"} style={{marginRight: "20px"}}>
-                    <SearchBar></SearchBar>
+                    <SearchBar className="sss"></SearchBar>
                 </div>
                 <div className={"row row-cols-3"} style={{marginRight: "20px"}}>
                     {courses.slice(0, displayCount).map((course) => (

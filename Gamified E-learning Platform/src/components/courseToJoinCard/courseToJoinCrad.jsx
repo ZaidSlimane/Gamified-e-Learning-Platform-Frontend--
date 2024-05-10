@@ -42,7 +42,7 @@ const CourseToJoinCard = ({imageUrl, courseName, stars, summary, enrollments, id
                 <div className="row mt-2 d-flex justify-content-center align-items-center">
                     <div className="col">
                         <PixelatdButton text={"JOIN"} className="btn btn-primary" type="submit"
-                                        onClick={() => navigate(`/enroll/${id}`)}>Join</PixelatdButton>
+                                        onClick={() => navigate(`/courses/${id}`)}>Join</PixelatdButton>
                     </div>
                     <div className="col text-end enrolled-text">
                         {enrollments} Enrolled

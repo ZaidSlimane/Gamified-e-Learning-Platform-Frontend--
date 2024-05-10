@@ -1,7 +1,6 @@
 .shadow{
     fill: #F8F8F8;
     filter: drop-shadow(5px 4px 0px #01F401);
-    background-color: white;
     border-radius: 12px;
 }
 
@@ -12,12 +11,13 @@
     font-size: 26px;
     font-weight: bolder;
     text-align: center !important;
+    margin-bottom: 0px;
 
 }
-.search-container {
-    position: relative;
-    width: 100% !important;
+.bg-white{
+    background-color: white;
 }
+
 
 .main-component{
 }
@@ -38,7 +38,7 @@ h4{
     font-weight: bolder !important;
     margin-top: 35px !important;
 }
-p{
+#p{
 
     font-size: 24px;
 }
@@ -68,3 +68,12 @@ p{
 .course-content{
     border-radius: 12px;
 }
+
+.current-chapter-class{
+    font-weight: bolder;
+}
+
+.lower-id-class{
+    cursor: pointer;
+}
+

@@ -9,7 +9,7 @@ const CourseCard = ({ imageUrl, courseName, startColor, endColor }) => {
     };
 
     return (
-        <div className="card mb-3 size shadow1 gradiant-background" style={gradientStyle}>
+        <div className="card mb-3 size shadow1 gradiant-background card-hover" style={gradientStyle}>
             <div className="row g-0">
                 <div className="col-md-8 d-flex justify-content-center align-items-center">
                     <p className="text-center course-name">{courseName}</p>
@@ -18,15 +18,15 @@ const CourseCard = ({ imageUrl, courseName, startColor, endColor }) => {
                 <div className="col-md-4 d-flex justify-content-center align-items-center">
                     <div className="image-placeholder">
                         <img
-                            className="img-fluid rounded-start"
+                            className="img-fluid rounded-start card-imagee"
                             src={imageUrl}
                             alt="Course Image"
                         />
                     </div>
-
                 </div>
             </div>
         </div>
+
     );
 };
 

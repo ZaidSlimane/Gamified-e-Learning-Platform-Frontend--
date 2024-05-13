@@ -20,6 +20,59 @@ function LoginPage() {
         setPassword(e.target.value);
     };
 
+    async function createTodayStatistics() {
+        const enrollmentEndpoint = 'http://127.0.0.1:8000/api/student/5/enrollments';
+        const statisticsByEnrollmentAndDateEndpoint = 'http://127.0.0.1:8000/api/statistics/by-enrollment-and-date/';
+        const statisticsEndpoint = 'http://127.0.0.1:8000/api/statistics/';
+
+        // Fetch enrollments data
+        try {
+            const response = await fetch(enrollmentEndpoint);
+            const enrollments = await response.json();
+
+            // Get today's date
+            const today = new Date().toISOString().split('T')[0];
+
+            // Check if statistics already exist for each enrollment on today's date
+            for (const enrollment of enrollments) {
+                const statisticsResponse = await fetch(`${statisticsByEnrollmentAndDateEndpoint}${enrollment.id}/${today}`);
+                const existingStatistics = await statisticsResponse.json();
+
+                // If statistics already exist for this enrollment on today's date, skip creation
+                if (existingStatistics.length > 0) {
+                    console.log(`Statistics already exist for enrollment ${enrollment.id} on ${today}`);
+                    continue;
+                }
+
+                // Otherwise, create statistics
+                const statisticsData = {
+                    enrollment: enrollment.id,
+                    date: today,
+                    points: 0,
+                    passed_chapters: 0
+                };
+
+                // Send POST request to create statistics
+                await fetch(statisticsEndpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(statisticsData)
+                });
+
+                console.log(`Statistics created for enrollment ${enrollment.id}`);
+            }
+
+            console.log('All statistics created successfully.');
+        } catch (error) {
+            console.error('Error creating statistics:', error);
+        }
+    }
+
+// Call the function to create today's statistics
+
+
     const handleLogin = async () => {
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/login/', {
@@ -40,6 +93,7 @@ function LoginPage() {
 
             const data = roleResponse.data;
             if (data.user.groups.includes(2)) {
+                await createTodayStatistics()
                 navigate('/courses'); // Redirect to courses page if user is a student
             } else {
             }

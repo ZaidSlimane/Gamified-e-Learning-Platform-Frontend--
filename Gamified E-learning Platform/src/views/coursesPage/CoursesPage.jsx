@@ -65,8 +65,13 @@ function CoursesPage() {
             }
         } catch
             (error) {
+            if (error.response && error.response.status === 401) {
+                setloggedIn(false);
+                console.log("ASDgfasdgf")
+            }
             console.error('Login error:', error);
             setError(true);
+            setloggedIn(false)
             return false
         }
     }

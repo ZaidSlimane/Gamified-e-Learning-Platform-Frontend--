@@ -1,6 +1,5 @@
 import RootContainer from "../../utils/rootContainerModule.jsx";
 import React, {useEffect, useState} from "react";
-import TextInput from "../../components/textInput/textInput.jsx";
 import "./EnrollPage.css";
 import SearchBar from "../../components/searchBar/SearchBar.jsx";
 import CourseInfoCard from "../../components/courseInfoCard/courseInfoCard.jsx";
@@ -91,7 +90,7 @@ function EnrollPage() {
             if (data.user.groups.length > 0) {
                 setuserData(data);
                 setloggedIn(true);
-                checkEnrolled(data.user.id)
+                await checkEnrolled(data.user.id)
             } else {
                 setloggedIn(false);
             }
@@ -106,14 +105,11 @@ function EnrollPage() {
     async function checkEnrolled(id) {
         try {
             const token = getToken();
-            const enrollmentsResponse = await axios.get(`http://127.0.0.1:8000/api/student/${id}/enrollments`, {
-                headers: {
-                    Authorization: `Bearer ${token}` // Send token as bearer code
-                }
-            });
+            const enrollmentsResponse = await axios.get(`http://127.0.0.1:8000/api/student/${id}/enrollments`)
             const enrollments = enrollmentsResponse.data;
             const isEnrolled = enrollments.some(enrollment => Number(enrollment.course) === Number(courseId));
             const Enrollmentdata = enrollments.find(enrollment => Number(enrollment.course) === Number(courseId));
+            console.log("enenene0" + enrollmentsResponse)
             setEnrolledCourse(Enrollmentdata)
 
             console.log("Is Enrolled:", isEnrolled); // Add this line for debugging
@@ -143,6 +139,8 @@ function EnrollPage() {
             if (response.status === 201) {
                 console.log("Enrollment successful");
                 setEnrolled(true);
+                window.location.reload(false);
+
             } else {
                 console.log("Enrollment failed");
             }

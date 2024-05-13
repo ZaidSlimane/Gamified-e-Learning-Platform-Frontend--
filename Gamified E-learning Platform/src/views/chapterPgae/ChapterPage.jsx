@@ -12,21 +12,47 @@ import {useNavigate, useParams} from "react-router-dom";
 function ChapterPage() {
     const [chapterData, setChapterData] = useState({});
     const [chapters, setChapters] = useState([]);
+    const [game, setGame] = useState([]);
     const chapterId = window.location.pathname.split('/').pop();
     const {courseId} = useParams();
     const [course, setCourse] = useState('')
     const navigate = useNavigate();
+    const [userData, setuserData] = useState('');
+    const [loggedIn, setloggedIn] = useState('');
+    const [enrollment, setEnrollment] = useState('');
+
 
     const handleQuestionClick = () => {
-        navigate('/question')
+        navigate(`/question/${courseId}/${chapterId}`)
+    }
+    const handleNextClick = () => {
+        console.log(userData)
+        console.log(game)
+        navigate(`/game/${enrollment.id}/${chapterId}`)
     }
 
 
-        async function fetchChapters(courseId) {
+    async function fetchgame(courseId) {
+        const response = await fetch(`http://127.0.0.1:8000/api/chapter/${chapterId}/games`);
+        const game = await response.json();
+
+        setGame(game);
+        return game;
+    }
+
+    async function fetchChapters() {
         const response = await fetch(`http://127.0.0.1:8000/api/courses/${courseId}/chapters`);
         const chapters = await response.json();
         setChapters(chapters)
         return chapters;
+    }
+    async function fetchEnrollemt(userId) {
+        const response = await fetch(`http://127.0.0.1:8000/api/student/${userId}/course/${courseId}/enrollments`);
+        const enrollments = await response.json();
+        const enrollment = enrollments[0]; // Get the first element of the array
+        console.log(enrollment)
+        setEnrollment(enrollment);
+        return enrollment;
     }
 
 
@@ -36,6 +62,8 @@ function ChapterPage() {
                 setChapterData(response.data);
                 fetchChapters(response.data.course);
                 fetchCourse(courseId)
+                checkloggedIn()
+                fetchgame()
             })
             .catch(error => {
                 console.error('There was an error!', error);
@@ -46,9 +74,41 @@ function ChapterPage() {
         const response = await fetch(`http://127.0.0.1:8000/api/courses/${courseId}/`);
         const course = await response.json();
         setCourse(course)
-        console.log(course.courseName)
         return course;
     }
+
+    const getToken = () => {
+        return localStorage.getItem('token');
+    };
+
+
+    async function checkloggedIn() {
+        try {
+            const token = getToken()
+            const roleResponse = await axios.get('http://127.0.0.1:8000/api/home', {
+                headers: {
+                    Authorization: `Bearer ${token}` // Send token as bearer code
+                }
+            });
+            const data = roleResponse.data;
+            if (data.user.groups.length > 0) {
+                setuserData(data);
+                await fetchEnrollemt(data.user.id)
+                setloggedIn(true);
+            } else {
+                setloggedIn(false);
+                navigate('/login')
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            if (error.response && error.response.status === 401) {
+                setloggedIn(false);
+                navigate('/login')
+            }
+            return false
+        }
+    }
+
 
 
     return (
@@ -95,7 +155,7 @@ function ChapterPage() {
 
 
                         </div>
-                        <div className="text-white ps-4 ms-4" style={{width: "35%"}}>
+                            <div className="text-white ps-4 ms-4" style={{width: "35%"}}>
                             <h4>Course Chapters</h4>
                             <div className="shadow white-border  course-content pt-4 ps-4 chapters">
                                 <div className="no-shadow pe-4">
@@ -138,6 +198,9 @@ function ChapterPage() {
                         </div>
                     </div>
                 </div>
+                <div className={"mb-5 d-flex justify-content-center"}>
+
+                    <PixelatdButton text="NEXT" onClick={handleNextClick}></PixelatdButton></div>
             </RootContainer>
         </>);
 }

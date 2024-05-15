@@ -1,0 +1,76 @@
+/* SideNavBar.css */
+.side-nav {
+    width: 160px;
+    background-color: #fff;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 20px;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+}
+
+.side-nav-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    color: #868686;
+    position: relative;
+    cursor: pointer;
+    transition: color 0.3s;
+    margin-top: 30px;
+
+}
+.side-nav-icon-container{
+    margin-left: 24px;
+}
+
+.side-nav-item:hover {
+    background-color: #f5f5f5;
+}
+
+.side-nav-item.active {
+    color: #01F401;
+}
+
+.side-nav-icon {
+    margin-right: 10px;
+    font-size: 20px;
+    margin-left: 28px;
+    fill: #868686; /* Default color for the SVG */
+    transition: fill 0.3s; /* Smooth transition for color change */
+
+
+}
+
+.side-nav-icon.active-icon {
+    fill: #01F401; /* Color when the item is active */
+}
+
+.side-nav-text {
+    font-size: 16px;
+    font-family: Inter;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.selecting-icon {
+    position: absolute;
+    left: -15px;
+    width: 10px;
+    height: 10px;
+    background-color: #01F401;
+    border-radius: 50%;
+    margin-bottom: 30px;
+    margin-left: 6px;
+
+}
+
+.side-nav-container {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 0;
+    width: 250px;
+}

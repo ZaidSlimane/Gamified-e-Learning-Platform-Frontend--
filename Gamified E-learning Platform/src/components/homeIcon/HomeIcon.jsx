@@ -1,0 +1,26 @@
+import React from 'react';
+
+const HomeIcon = ({ fill }) => (
+    <svg width="38" height="40" viewBox="0 0 38 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clipPath="url(#clip0_712_3889)" filter="url(#filter0_d_712_3889)">
+            <path d="M31.9018 30.5085C31.9018 30.9063 31.7431 31.2878 31.4605 31.5691C31.1779 31.8504 30.7947 32.0085 30.395 32.0085H6.28679C5.88718 32.0085 5.50392 31.8504 5.22135 31.5691C4.93878 31.2878 4.78003 30.9063 4.78003 30.5085V14.7435C4.77987 14.5149 4.83219 14.2893 4.93299 14.0839C5.03379 13.8785 5.18041 13.6988 5.36164 13.5585L17.4158 4.22546C17.6803 4.02063 18.0058 3.90942 18.3409 3.90942C18.676 3.90942 19.0016 4.02063 19.2661 4.22546L31.3202 13.5585C31.5014 13.6988 31.648 13.8785 31.7488 14.0839C31.8496 14.2893 31.902 14.5149 31.9018 14.7435V30.5085ZM28.8883 29.0085V15.4755L18.3409 7.30946L7.79356 15.4755V29.0085H28.8883ZM10.8071 23.0085H25.8747V26.0085H10.8071V23.0085Z" fill={fill} />
+        </g>
+        <defs>
+            <filter id="filter0_d_712_3889" x="-2.86206" y="0.508057" width="43.998" height="44" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                <feOffset dy="4" />
+                <feGaussianBlur stdDeviation="2" />
+                <feComposite in2="hardAlpha" operator="out" />
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_712_3889" />
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_712_3889" result="shape" />
+            </filter>
+            <clipPath id="clip0_712_3889">
+                <rect width="35.998" height="36" fill="white" transform="translate(1.13794 0.508057)" />
+            </clipPath>
+        </defs>
+    </svg>
+);
+
+export default HomeIcon;

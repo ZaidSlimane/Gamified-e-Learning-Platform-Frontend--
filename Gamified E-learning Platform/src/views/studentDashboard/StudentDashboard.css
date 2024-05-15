@@ -1,0 +1,66 @@
+.st_username{
+    font-family: Inter;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.light-grey-bg{
+    background-color: #3E435B;
+}
+.badge-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: fit-content;
+}
+
+.badge-img{
+    width: 65% !important;
+}
+.badge-name{
+    color: white;
+    font-family: Montserrat;
+    font-weight: bold;
+}
+
+.stats{
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: Montserrat;
+}
+
+
+.progress-bar{
+    background-color: #01F401 !important;
+
+}
+
+.sd-course-name{
+    margin-bottom: 5px;
+    font-family: Inter;
+    color: white;
+}
+
+.progress-bar-item{
+    margin-top: 16px;
+}
+
+.chart-container{
+    width: 50%;
+}
+
+.st-profile{
+   height: 46px;
+    border-radius: 100%;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+.st-days1-font{
+    font-family: "Days One";
+}
+
+
+

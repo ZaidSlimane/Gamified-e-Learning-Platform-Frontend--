@@ -9,6 +9,7 @@ import ChapterPage from "./views/chapterPgae/ChapterPage.jsx";
 import {Unity, useUnityContext} from "react-unity-webgl";
 import LeaveQuestionPage from "./views/leaveQuestionPage/LeaveQuestionPage.jsx";
 import GamePage from "./views/gamePage/GamePage.jsx";
+import StudentDashboard from "./views/studentDashboard/StudentDashboard.jsx";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
                 <Route path="/courses/:courseId/chapter/:chapterId" element={<ChapterPage/>}/>
                 <Route path="/question/:courseId/:chapterId" element={<LeaveQuestionPage/>}/>
                 <Route path="/game/:enrollmentId/:chapterId" element={<GamePage/>}/>
+                <Route path="/student" element={<StudentDashboard/>}/>
             </Routes>
         </Router>
 

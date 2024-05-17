@@ -10,6 +10,7 @@
     border-right: 1px solid #ddd;
     display: flex;
     flex-direction: column;
+    background-color: white !important;
 }
 
 .side-nav-item {
@@ -69,8 +70,8 @@
 }
 
 .side-nav-container {
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 0;
-    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
     width: 250px;
 }

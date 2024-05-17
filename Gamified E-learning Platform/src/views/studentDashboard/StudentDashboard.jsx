@@ -1,4 +1,3 @@
-// StudentDashboard.jsx
 import React, {useEffect, useState} from "react";
 import {ProgressBar} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
@@ -7,7 +6,8 @@ import axios from "axios";
 import "./StudentDashboard.css";
 import LineChart from "../../components/lineChart/LineChart.jsx";
 import SideNavBar from "../../components/sideNavBar/SideNavBar";
-import SearchBar from "../../components/searchBar/SearchBar.jsx";  // Import the SideNavBar component
+import SearchBar from "../../components/searchBar/SearchBar.jsx";
+import QuestionCard from "../../components/questionCard/QuestionCard.jsx";  // Import the SideNavBar component
 
 function StudentDashboard() {
     const navigate = useNavigate();
@@ -40,7 +40,6 @@ function StudentDashboard() {
             if (data.user.groups.length > 0) {
                 setUserData(data);
                 setLoggedIn(true);
-                console.log(data);
                 getStatistics(data.user.id);
                 getCourseProgress(data.user.id)
                 getCourseStatistics(data.user.id);
@@ -124,7 +123,6 @@ function StudentDashboard() {
 
             // Get today's date in 'yyyy-mm-dd' format
             const todayStr = new Date().toISOString().split('T')[0];
-            console.log(data)
             const todaysStats = data.find(stat => stat.date === todayStr);
             const dailyPoints = todaysStats ? todaysStats.points : 0;
 

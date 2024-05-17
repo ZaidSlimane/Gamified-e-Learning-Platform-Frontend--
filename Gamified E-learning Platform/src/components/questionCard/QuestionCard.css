@@ -1,0 +1,22 @@
+.question-card-container {
+    filter: drop-shadow(5px 4px 0px #000000) !important;
+    fill: white;
+    box-shadow: black;
+    border: black solid 3px;
+    padding: 6px 6px 6px 18px;
+    font-family: Montserrat;
+    border-radius: 16px;
+}
+
+.question-course-name{
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.question-chapter-name{
+    font-size: 18px;
+}
+
+.question-card-container p {
+    margin-bottom: 0px;
+}

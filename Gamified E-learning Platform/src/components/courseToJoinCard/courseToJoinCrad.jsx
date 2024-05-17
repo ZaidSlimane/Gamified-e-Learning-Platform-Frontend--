@@ -3,8 +3,7 @@ import './courseToJoinCrad.css';
 import PixelatdButton from "../pixelatedButton/pixelatedButton.jsx";
 import {useNavigate} from "react-router-dom"; // Import useNavigate
 
-
-const CourseToJoinCard = ({imageUrl, courseName, stars, summary, enrollments, id}) => {
+const CourseToJoinCard = ({imageUrl, courseName, stars, summary, enrollments, id, buttonText}) => {
     // Function to generate stars based on the number
     const renderStars = (stars) => {
         const starArray = [];
@@ -15,12 +14,10 @@ const CourseToJoinCard = ({imageUrl, courseName, stars, summary, enrollments, id
     };
     const navigate = useNavigate(); // Initialize useNavigate
 
-
     return (
-
         <div className="card p-3 card-size shadow">
             <div className="card-body">
-                <div clasassName="image-container image-size">
+                <div className="image-container image-size">
                     <img src={imageUrl} alt="Course" className="image-size"/>
                 </div>
                 <div className="row mt-3">
@@ -41,8 +38,8 @@ const CourseToJoinCard = ({imageUrl, courseName, stars, summary, enrollments, id
                 </div>
                 <div className="row mt-2 d-flex justify-content-center align-items-center">
                     <div className="col">
-                        <PixelatdButton text={"JOIN"} className="btn btn-primary" type="submit"
-                                        onClick={() => navigate(`/courses/${id}`)}>Join</PixelatdButton>
+                        <PixelatdButton text={buttonText || "JOIN"} className="btn btn-primary" type="submit"
+                                        onClick={() => navigate(`/courses/${id}`)}>{buttonText || "Join"}</PixelatdButton>
                     </div>
                     <div className="col text-end enrolled-text">
                         {enrollments} Enrolled

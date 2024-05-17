@@ -1,0 +1,6 @@
+.root-no-right-margin .root-container {
+    margin-right: 0px;
+}
+.questions-container {
+    flex-grow: 1;
+}

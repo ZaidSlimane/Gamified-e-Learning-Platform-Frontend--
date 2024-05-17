@@ -94,7 +94,7 @@ function LoginPage() {
             const data = roleResponse.data;
             if (data.user.groups.includes(2)) {
                 await createTodayStatistics()
-                navigate('/courses'); // Redirect to courses page if user is a student
+                navigate('/student'); // Redirect to courses page if user is a student
             } else {
             }
         } catch (error) {

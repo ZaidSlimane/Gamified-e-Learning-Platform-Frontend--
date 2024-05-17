@@ -8,6 +8,8 @@ import SearchBar from "../../components/searchBar/SearchBar.jsx";
 import {useNavigate} from "react-router-dom";
 import RootContainer from "../../utils/rootContainerModule.jsx";
 import axios from "axios";
+import SideNavBar from "../../components/sideNavBar/SideNavBar.jsx";
+import Spinner from "../../components/spinner/Spinner.jsx";
 
 async function fetchReviews(courseId) {
     const response = await fetch(`http://127.0.0.1:8000/api/course/${courseId}/reviews`);
@@ -27,6 +29,7 @@ async function fetchEnrollments(courseId) {
 }
 
 function CoursesPage() {
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
     let [courses, setCourses] = useState([]);
     const [displayCount, setDisplayCount] = useState(6);
@@ -51,6 +54,7 @@ function CoursesPage() {
             if (data.user.groups.length > 0) {
                 setuserData(data);
                 setloggedIn(true);
+                setLoading(false);
                 const response = await fetch(`http://127.0.0.1:8000/api/student/${data.user.id}/notenrolled`);
                 let enrollments = await response.json();
                 for (let course of enrollments) {
@@ -62,16 +66,19 @@ function CoursesPage() {
 
             } else {
                 setloggedIn(false);
+                setLoading(false);
             }
         } catch
             (error) {
             if (error.response && error.response.status === 401) {
                 setloggedIn(false);
                 console.log("ASDgfasdgf")
+                setLoading(false);
             }
             console.error('Login error:', error);
             setError(true);
             setloggedIn(false)
+            setLoading(false);
             return false
         }
     }
@@ -98,38 +105,53 @@ function CoursesPage() {
     return (
         <>
             <RootContainer>
-                <div className="row g-0 navigation-header justify-content-between align-items-center mt-5"
-                     style={{marginBottom: '100px'}}>
-                    <div className="col-auto">
-                        <img src="../../../public/logo.svg"/>
+                {loading ? (
+<Spinner/>                ) : (
+                    <>
+                {loggedIn ? (
+                    <div className="mb-xxl-5">
+                        <SideNavBar/>
+                        <div className="content" style={{marginLeft: '200px'}}>
+                            <div className="mt-4 d-flex align-items-center justify-content-between">
+                                {userData && (
+                                    <div>
+                                        <p className="text-white st_username">Hi, {userData.user.first_name + " " + userData.user.last_name}</p>
+                                    </div>)}
+                                <div className="d-flex align-items-center">
+                                    <SearchBar width={"100%"}/>
+                                    <img
+                                        src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                                        className="st-profile"/>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    <div className="col-auto">
-                        <Navbar></Navbar>
-                    </div>
-                    <div className="col-auto d-flex align-items-center" style={{marginLeft: "-60px"}}>
-                        {loggedIn ? (
-                            <>
-                                <p className="username">{userData.user.username}</p>
-                                <img
-                                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                                    alt="User Avatar" className="rounded-circle profile-pic"/>
-                            </>
-                        ) : (
-                            <>
+                ) : (
+                    <>
+                        <div className="row g-0 navigation-header justify-content-between align-items-center mt-5"
+                             style={{marginBottom: '100px'}}>
+                            <div className="col-auto">
+                                <img src="../../../public/logo.svg"/>
+                            </div>
+                            <div className="col-auto">
+                                <Navbar></Navbar>
+                            </div>
+                            <div className="col-auto d-flex align-items-center" style={{marginLeft: "-60px"}}>
                                 <PixelatdButton className="btn btn-primary me-2" type="submit" text="Register"
                                                 onClick={handleSignUpClick}></PixelatdButton>
                                 <p>      </p>
                                 <PixelatdButton className="btn btn-primary" type="submit" text="Sign in"
                                                 onClick={handleSignInClick}></PixelatdButton>
-                            </>
-                        )}
+                            </div>
+                        </div>
 
-                    </div>
-                </div>
+
                 <div className={"mb-5  d-flex justify-content-center"} style={{marginRight: "20px"}}>
                     <SearchBar className="sss"></SearchBar>
-                </div>
-                <div className={"row row-cols-3"} style={{marginRight: "20px"}}>
+                </div></>
+                )}
+                <div className={"row row-cols-3"} style={{marginLeft: loggedIn ? "100px" : "0px", marginRight:"20px"}}>
                     {courses.slice(0, displayCount).map((course) => (
                         <div className="col d-flex justify-content-center">
                             <CourseToJoinCard
@@ -153,6 +175,7 @@ function CoursesPage() {
                         setIsExpanded(!isExpanded);
                     }}/>
                 </div>
+                    </>)}
             </RootContainer>
         </>);
 }

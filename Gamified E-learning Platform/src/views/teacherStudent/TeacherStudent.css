@@ -1,0 +1,31 @@
+.teacher-s-course-title-div{
+    border-radius: 22px ;
+    padding: 6px 100px 8px;
+    font-size: 22px;
+
+}
+
+.student-card-image{
+    border-radius: 100%;
+}
+
+.student-name{
+    font-family:Montserrat;
+    font-weight: 600;
+    font-size: 28px;
+    padding-top: 14px;
+}
+
+.custom-col {
+    width: 28%; /* Set the width of each column */
+    margin-right: 2%; /* Add margin to the right for spacing */
+}
+.custom-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Optional: additional spacing between rows */
+}
+.custom-col:last-child {
+    margin-right: 0; }/* Remove margin on the last column to avoid extra space */
+
+

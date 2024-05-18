@@ -6,6 +6,7 @@
     padding: 6px 6px 6px 18px;
     font-family: Montserrat;
     border-radius: 16px;
+
 }
 
 .question-course-name{
@@ -20,3 +21,17 @@
 .question-card-container p {
     margin-bottom: 0px;
 }
+
+.card-hover2 {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover2:hover {
+    transform: scale(1.024); /* Scale the card slightly on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box-shadow */
+}
+
+.teacher-cursor {
+    cursor: pointer;
+}
+

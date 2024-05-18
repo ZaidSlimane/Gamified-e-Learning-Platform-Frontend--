@@ -12,6 +12,10 @@ import GamePage from "./views/gamePage/GamePage.jsx";
 import StudentDashboard from "./views/studentDashboard/StudentDashboard.jsx";
 import QuestionsPage from "./views/questionsPage/QuestionsPage.jsx";
 import EnrolledPage from "./views/enrolledPage/EnrolledPage.jsx";
+import TeacherCourses from "./views/teacherCourses/TeacherCourses.jsx";
+import TeacherStudent from "./views/teacherStudent/TeacherStudent.jsx";
+import TeacherStatsPage from "./views/teacherStatsPage/TeacherStatsPage.jsx";
+import TeacherQuestions from "./views/teacherQuestions/TeacherQuestions.jsx";
 
 
 function App() {
@@ -31,6 +35,10 @@ function App() {
                 <Route path="/student" element={<StudentDashboard/>}/>
                 <Route path="/questions" element={<QuestionsPage/>}/>
                 <Route path="/enrolled" element={<EnrolledPage/>}/>
+                <Route path="/teacher/courses" element={<TeacherCourses/>}/>
+                <Route path="/teacher/courses/:courseId" element={<TeacherStudent/>}/>
+                <Route path="/teacher/courses/:courseId/:studentId" element={<TeacherStatsPage/>}/>
+                <Route path="/teacher/questions" element={<TeacherQuestions/>}/>
 
             </Routes>
         </Router>

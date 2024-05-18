@@ -15,9 +15,8 @@ function StudentDashboard() {
     const [loggedIn, setLoggedIn] = useState('');
     const [dailyPoints, setDailyPoints] = useState(0);
     const [totalPoints, setTotalPoints] = useState(0);
-    const [lineChartData, setLineChartData] = useState({ labels: [], datasets: [] });
-    const [chapterProgressData, setChapterProgressData] = useState({ labels: [], datasets: [] });
-
+    const [lineChartData, setLineChartData] = useState({labels: [], datasets: []});
+    const [chapterProgressData, setChapterProgressData] = useState({labels: [], datasets: []});
 
 
     useEffect(() => {
@@ -59,6 +58,7 @@ function StudentDashboard() {
             return false;
         }
     }
+
     async function getChapterProgress(userId) {
         try {
             const token = getToken();
@@ -105,7 +105,7 @@ function StudentDashboard() {
                 labels.push(String(date.getDate()).padStart(2, '0'));
             }
 
-            setChapterProgressData({ labels, datasets });
+            setChapterProgressData({labels, datasets});
         } catch (error) {
             console.error('Error fetching chapter progress:', error);
         }
@@ -213,7 +213,7 @@ function StudentDashboard() {
                 labels.push(String(date.getDate()).padStart(2, '0'));
             }
 
-            setLineChartData({ labels, datasets });
+            setLineChartData({labels, datasets});
         } catch (error) {
             console.error('Error fetching course statistics:', error);
         }
@@ -290,7 +290,11 @@ function StudentDashboard() {
                                                 <p className="sd-course-name st-days1-font">{course.courseName}</p>
                                                 <p className="sd-course-name progress-percentage">{Math.round(course.progress)}%</p>
                                             </div>
-                                            <ProgressBar now={course.progress} style={{backgroundColor: "#5E677A", height: "5px", width:"400px"}}
+                                            <ProgressBar now={course.progress} style={{
+                                                backgroundColor: "#5E677A",
+                                                height: "5px",
+                                                width: "400px"
+                                            }}
                                                          variant="custom"/>
                                         </div>
                                     ))}
@@ -298,14 +302,14 @@ function StudentDashboard() {
                             </div>
                         </div>
                         <div className="d-flex">
-                        <div className="shadow light-grey-bg mt-5 chart-container">
-                            <LineChart data={lineChartData}/>
-                            <p className="text-white text-center st-days1-font">Points progress</p>
-                        </div>
-                        <div className="shadow light-grey-bg mt-5 chart-container ms-5">
-                            <LineChart data={chapterProgressData}/>
-                            <p className="text-white text-center st-days1-font">Chapters progress</p>
-                        </div>
+                            <div className="shadow light-grey-bg mt-5 chart-container">
+                                <LineChart data={lineChartData}/>
+                                <p className="text-white text-center st-days1-font">Points progress</p>
+                            </div>
+                            <div className="shadow light-grey-bg mt-5 chart-container ms-5">
+                                <LineChart data={chapterProgressData}/>
+                                <p className="text-white text-center st-days1-font">Chapters progress</p>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -81,7 +81,10 @@ function LoginPage() {
             });
 
             const token = response.data.access;
+            const  refresh = response.data.refresh;
             localStorage.setItem('token', token);
+            localStorage.setItem('refresh', refresh)
+
 
             // Make a GET request to fetch user role
             const roleResponse = await axios.get('http://127.0.0.1:8000/api/home/', {
@@ -92,10 +95,13 @@ function LoginPage() {
 
 
             const data = roleResponse.data;
+            console.log(data)
             if (data.user.groups.includes(2)) {
                 await createTodayStatistics()
-                navigate('/student'); // Redirect to courses page if user is a student
-            } else {
+                navigate('/student');
+            } else if (data.user.groups.includes(3)) {
+                navigate('/teacher/courses');
+
             }
         } catch (error) {
             console.error('Login error:', error);

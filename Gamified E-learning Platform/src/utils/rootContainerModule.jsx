@@ -4,7 +4,7 @@ import './rootContainerCssModule.css';
 
 const RootContainer = ({ children }) => {
     return (
-        <div className="root-container">
+        <div className="root-container mb-5">
             {children}
         </div>
     );

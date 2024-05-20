@@ -5,7 +5,9 @@ import CourseSection from "../../components/courseSection/courseSection.jsx";
 import PixelatdButton from "../../components/pixelatedButton/pixelatedButton.jsx";
 import SectionComponent from "../../components/sectionComponent/sectionComponent.jsx";
 import Circle from "../../components/Circle.jsx";
+import Footer from "../../components/Footer.jsx";
 import TestimonialCard from "../../components/testimonuials/testimonials.jsx";
+import GradientCircle from "../../components/GradientCircle.jsx";
 import "@fontsource/inter"
 import "./LandingPage.css"
 import '../../../src/fonts/fonts.css'
@@ -138,6 +140,13 @@ function LandingPage() {
                         <p style={{fontSize: '24px'}}>
                             Meet ByteSensei, your guide to a dynamic learning experience! With ByteSensei by your side, explore a world where education meets adventure through interactive games.                        </p>
                     </div>
+
+                    <div className="d-flex justify-content-center">
+
+                        <GradientCircle imageUrl={"/mascot.svg"} >
+                        </GradientCircle>
+                    </div>
+
                 </SectionComponent>
 
                 <SectionComponent containerName="Testemonials" title="Testemonials">
@@ -147,14 +156,17 @@ function LandingPage() {
                     </div>
 
 
-                    <div className="d-flex flex-row"></div>
-                    <TestimonialCard>
-                    </TestimonialCard>
+                    <div className="d-flex flex-row justify-content-between">
+                        <TestimonialCard>
+                        </TestimonialCard>
 
-                    <TestimonialCard>
+                        <TestimonialCard>
+                        </TestimonialCard>
+                    </div>
 
-                    </TestimonialCard>
-
+                    <SectionComponent containerName="Skilled Teachers" title="skilled-teachers">
+                        <GradientCircle imageUrl="/pngfind 1.svg"></GradientCircle>
+                    </SectionComponent>
                 </SectionComponent>
 
                 {/* Add the image with styles */}
@@ -183,9 +195,8 @@ function LandingPage() {
                         marginRight: '100px'
                     }}
                 />
-
             </RootContainer>
-
+            <Footer></Footer>
 
         </>
     )

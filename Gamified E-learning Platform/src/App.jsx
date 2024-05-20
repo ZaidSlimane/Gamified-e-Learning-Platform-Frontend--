@@ -16,6 +16,9 @@ import TeacherCourses from "./views/teacherCourses/TeacherCourses.jsx";
 import TeacherStudent from "./views/teacherStudent/TeacherStudent.jsx";
 import TeacherStatsPage from "./views/teacherStatsPage/TeacherStatsPage.jsx";
 import TeacherQuestions from "./views/teacherQuestions/TeacherQuestions.jsx";
+import AnswerQuestions from "./views/answerQuestion/AnswerQuestions.jsx";
+import MessagesPage from "./views/messagesPage/MessagesPage.jsx";
+import SpecialistCourses from "./views/specialistCourses/SpecialistCourses.jsx";
 
 
 function App() {
@@ -39,6 +42,9 @@ function App() {
                 <Route path="/teacher/courses/:courseId" element={<TeacherStudent/>}/>
                 <Route path="/teacher/courses/:courseId/:studentId" element={<TeacherStatsPage/>}/>
                 <Route path="/teacher/questions" element={<TeacherQuestions/>}/>
+                <Route path="/answer/:questionId" element={<AnswerQuestions/>}/>
+                <Route path="/messages" element={<MessagesPage/>}/>
+                <Route path="/specialist" element={<SpecialistCourses/>}/>
 
             </Routes>
         </Router>

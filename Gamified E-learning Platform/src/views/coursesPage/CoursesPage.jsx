@@ -10,6 +10,7 @@ import RootContainer from "../../utils/rootContainerModule.jsx";
 import axios from "axios";
 import SideNavBar from "../../components/sideNavBar/SideNavBar.jsx";
 import Spinner from "../../components/spinner/Spinner.jsx";
+import TeacherSideNavBar from "../../components/teacherSideNavBar/TeacherSideNavBar.jsx";
 
 async function fetchReviews(courseId) {
     const response = await fetch(`http://127.0.0.1:8000/api/course/${courseId}/reviews`);
@@ -34,6 +35,7 @@ function CoursesPage() {
     let [courses, setCourses] = useState([]);
     const [displayCount, setDisplayCount] = useState(6);
     const [isExpanded, setIsExpanded] = useState(false);
+    const [role, setRole] = useState('')
 
     const getToken = () => {
         return localStorage.getItem('token');
@@ -54,6 +56,7 @@ function CoursesPage() {
             if (data.user.groups.length > 0) {
                 setuserData(data);
                 setloggedIn(true);
+                setRole(localStorage.getItem('ROLE'))
                 setLoading(false);
                 const response = await fetch(`http://127.0.0.1:8000/api/student/${data.user.id}/notenrolled`);
                 let enrollments = await response.json();
@@ -106,75 +109,78 @@ function CoursesPage() {
         <>
             <RootContainer>
                 {loading ? (
-<Spinner/>                ) : (
+                    <Spinner/>) : (
                     <>
-                {loggedIn ? (
-                    <div className="mb-xxl-5">
-                        <SideNavBar/>
-                        <div className="content" style={{marginLeft: '200px'}}>
-                            <div className="mt-4 d-flex align-items-center justify-content-between">
-                                {userData && (
-                                    <div>
-                                        <p className="text-white st_username">Hi, {userData.user.first_name + " " + userData.user.last_name}</p>
-                                    </div>)}
-                                <div className="d-flex align-items-center">
-                                    <SearchBar width={"100%"}/>
-                                    <img
-                                        src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                                        className="st-profile"/>
+                        {loggedIn ? (
+                            <div className="mb-xxl-5">
+                                {role === 'STUDENT' ? (<SideNavBar/>) : (<TeacherSideNavBar/>)}
+                                <div className="content" style={{marginLeft: '200px'}}>
+                                    <div className="mt-4 d-flex align-items-center justify-content-between">
+                                        {userData && (
+                                            <div>
+                                                <p className="text-white st_username">Hi, {userData.user.first_name + " " + userData.user.last_name}</p>
+                                            </div>)}
+                                        <div className="d-flex align-items-center">
+                                            <SearchBar width={"100%"}/>
+                                            <img
+                                                src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                                                className="st-profile"/>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
 
-                    </div>
-                ) : (
-                    <>
-                        <div className="row g-0 navigation-header justify-content-between align-items-center mt-5"
-                             style={{marginBottom: '100px'}}>
-                            <div className="col-auto">
-                                <img src="../../../public/logo.svg"/>
                             </div>
-                            <div className="col-auto">
-                                <Navbar></Navbar>
-                            </div>
-                            <div className="col-auto d-flex align-items-center" style={{marginLeft: "-60px"}}>
-                                <PixelatdButton className="btn btn-primary me-2" type="submit" text="Register"
-                                                onClick={handleSignUpClick}></PixelatdButton>
-                                <p>      </p>
-                                <PixelatdButton className="btn btn-primary" type="submit" text="Sign in"
-                                                onClick={handleSignInClick}></PixelatdButton>
-                            </div>
-                        </div>
+                        ) : (
+                            <>
+                                <div
+                                    className="row g-0 navigation-header justify-content-between align-items-center mt-5"
+                                    style={{marginBottom: '100px'}}>
+                                    <div className="col-auto">
+                                        <img src="../../../public/logo.svg"/>
+                                    </div>
+                                    <div className="col-auto">
+                                        <Navbar></Navbar>
+                                    </div>
+                                    <div className="col-auto d-flex align-items-center" style={{marginLeft: "-60px"}}>
+                                        <PixelatdButton className="btn btn-primary me-2" type="submit" text="Register"
+                                                        onClick={handleSignUpClick}></PixelatdButton>
+                                        <p></p>
+                                        <PixelatdButton className="btn btn-primary" type="submit" text="Sign in"
+                                                        onClick={handleSignInClick}></PixelatdButton>
+                                    </div>
+                                </div>
 
 
-                <div className={"mb-5  d-flex justify-content-center"} style={{marginRight: "20px"}}>
-                    <SearchBar className="sss"></SearchBar>
-                </div></>
-                )}
-                <div className={"row row-cols-3"} style={{marginLeft: loggedIn ? "100px" : "0px", marginRight:"20px"}}>
-                    {courses.slice(0, displayCount).map((course) => (
-                        <div className="col d-flex justify-content-center">
-                            <CourseToJoinCard
-                                imageUrl={course.imglink}
-                                courseName={course.courseName}
-                                stars={course.stars}
-                                summary={course.courseSummary}
-                                enrollments={course.enrollments}
-                                id={course.id}
-                            />
+                                <div className={"mb-5  d-flex justify-content-center"} style={{marginRight: "20px"}}>
+                                    <SearchBar className="sss"></SearchBar>
+                                </div>
+                            </>
+                        )}
+                        <div className={"row row-cols-3"}
+                             style={{marginLeft: loggedIn ? "100px" : "0px", marginRight: "20px"}}>
+                            {courses.slice(0, displayCount).map((course) => (
+                                <div className="col d-flex justify-content-center">
+                                    <CourseToJoinCard
+                                        imageUrl={course.imglink}
+                                        courseName={course.courseName}
+                                        stars={course.stars}
+                                        summary={course.courseSummary}
+                                        enrollments={course.enrollments}
+                                        id={course.id}
+                                    />
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
-                <div className={"mt-3 mb-5 d-flex justify-content-center"}>
-                    <PixelatdButton text={isExpanded ? "SHOW LESS" : "VIEW MORE"} onClick={() => {
-                        if (isExpanded) {
-                            setDisplayCount(6);
-                        } else {
-                            setDisplayCount(courses.length);
-                        }
-                        setIsExpanded(!isExpanded);
-                    }}/>
-                </div>
+                        <div className={"mt-3 mb-5 d-flex justify-content-center"}>
+                            <PixelatdButton text={isExpanded ? "SHOW LESS" : "VIEW MORE"} onClick={() => {
+                                if (isExpanded) {
+                                    setDisplayCount(6);
+                                } else {
+                                    setDisplayCount(courses.length);
+                                }
+                                setIsExpanded(!isExpanded);
+                            }}/>
+                        </div>
                     </>)}
             </RootContainer>
         </>);

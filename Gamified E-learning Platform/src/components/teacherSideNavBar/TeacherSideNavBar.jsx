@@ -5,6 +5,7 @@ import EnrolledIcon from "../enrolledIcon/EnrolledIcon.jsx";
 import MessagesIcon from "../messagesIcon/MessagesIcon.jsx";
 import LogoutIcon from "../logoutIcon/LogoutIcon.jsx";
 import './TeacherSideNavBar.css';
+import axios from "axios";
 
 const TeacherSideNavBar = () => {
     const navigate = useNavigate();
@@ -13,12 +14,34 @@ const TeacherSideNavBar = () => {
     const navItems = [
         { id: 'teachercourses', icon: <EnrolledIcon fill={location.pathname === '/teacher/courses' ? '#01F401' : '#868686'} />, text: 'Courses', path: '/teacher/courses' },
         { id: 'teacherquestions', icon: <EnrolledIcon fill={location.pathname === '/teacher/questions' ? '#01F401' : '#868686'} />, text: 'Questions', path: '/teacher/questions' },
-        { id: 'teachermessages', icon: <MessagesIcon fill={location.pathname === '/teacher/messages' ? '#01F401' : '#868686'} />, text: 'Messages', path: '/teacher/messages' },
+        { id: 'teachermessages', icon: <MessagesIcon fill={location.pathname === '/messages' ? '#01F401' : '#868686'} />, text: 'Messages', path: '/messages' },
         { id: 'logout', icon: <MessagesIcon fill={location.pathname === '/logout' ? '#01F401' : '#868686'} />, text: 'Logout', path: '/logout' },
     ];
 
-    const handleNavItemClick = (path) => {
-        navigate(path);
+    const handleNavItemClick = async (path) => {
+
+        if (path == '/logout') {
+            const refresh = localStorage.getItem('refresh');
+            const token = localStorage.getItem('token');
+
+            console.log(refresh);
+            console.log(token)
+            const roleResponse = await axios.post('http://127.0.0.1:8000/api/logout/', {}, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}` // Send token as bearer code
+
+                }
+            });
+            localStorage.removeItem('token')
+            localStorage.removeItem('refresh')
+            localStorage.removeItem('ROLE')
+            navigate('/')
+
+            console.log(roleResponse)
+
+        } else
+            navigate(path);
     };
 
     return (

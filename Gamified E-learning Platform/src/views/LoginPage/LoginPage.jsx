@@ -95,12 +95,29 @@ function LoginPage() {
 
 
             const data = roleResponse.data;
-            console.log(data)
-            if (data.user.groups.includes(2)) {
+            console.log(data.groups)
+            let groups = []
+            if (data.groups){
+                groups = data.groups
+            }else{
+                groups = data.user.groups
+
+            }
+            console.log(groups)
+            if (groups.includes(2)) {
                 await createTodayStatistics()
+                localStorage.setItem('ROLE','STUDENT')
                 navigate('/student');
-            } else if (data.user.groups.includes(3)) {
+            } else if (groups.includes(3)) {
+                localStorage.setItem('ROLE','TEACHER')
+                console.log(localStorage.getItem('ROLE'))
                 navigate('/teacher/courses');
+
+            } else if (groups.includes(4)) {
+                console.log(data)
+                localStorage.setItem('ROLE','SPECIALIST')
+                console.log(localStorage.getItem('ROLE'))
+                navigate('/specialist');
 
             }
         } catch (error) {

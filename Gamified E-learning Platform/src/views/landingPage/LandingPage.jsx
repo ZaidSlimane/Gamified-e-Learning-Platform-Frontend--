@@ -5,6 +5,7 @@ import CourseSection from "../../components/courseSection/courseSection.jsx";
 import PixelatdButton from "../../components/pixelatedButton/pixelatedButton.jsx";
 import SectionComponent from "../../components/sectionComponent/sectionComponent.jsx";
 import Circle from "../../components/Circle.jsx";
+import TestimonialCard from "../../components/testimonuials/testimonials.jsx";
 import "@fontsource/inter"
 import "./LandingPage.css"
 import '../../../src/fonts/fonts.css'
@@ -102,14 +103,57 @@ function LandingPage() {
                 </div>
 
 
-                <SectionComponent containerName="avatar-container"
-                                  title="Avatars">
-                    <div className="col-auto d-flex justify-content-center">
-
-                        <Circle radius={80}></Circle>
-                        <Circle radius={100}></Circle>
-                        <Circle radius={80}></Circle>
+                <SectionComponent containerName="avatar-container" title="Avatars">
+                    <div className="text-center mb-4" style={{color: 'white'}}>
+                        <p style={{fontSize: '24px'}}>
+                            Showcase your progress with our gamified badges! Earn badges for mastering skills, engaging
+                            in learning activities, achieving course milestones, and demonstrating expertise. Start
+                            earning and level up your learning journey today!
+                        </p>
                     </div>
+                    <div className="col-auto d-flex justify-content-center">
+                        <Circle radius={80} shadowY={4} imageUrl="/avatar1.png"></Circle>
+                        <Circle radius={100} shadowY={-4} imageUrl="/avatar2.png"> </Circle>
+                        <Circle radius={80} shadowY={4} imageUrl="/avatar2.png"></Circle>
+                    </div>
+                </SectionComponent>
+
+
+                <SectionComponent containerName="Interactive games" title="Interative Games">
+                    <div className="text-center mb-4" style={{color: 'white'}}>
+                        <p style={{fontSize: '24px'}}>
+                            Play games designed to enhance your knowledge and skills in a fun, interactive way.
+                        </p>
+                    </div>
+                    <div className="d-flex flex-row justify-content-between">
+                        <img src="/DisplayScreen.svg" alt="Left SVG" style={{height: '300px'}}/>
+                        <div style={{width: '200px'}}></div>
+                        <img src="/PlayButtons.svg" alt="Left SVG" style={{height: '300px'}}/>
+                    </div>
+                </SectionComponent>
+
+
+                <SectionComponent containerName="mascot" title="Meet your ByteSenei">
+                    <div className="text-center mb-4" style={{color: 'white'}}>
+                        <p style={{fontSize: '24px'}}>
+                            Meet ByteSensei, your guide to a dynamic learning experience! With ByteSensei by your side, explore a world where education meets adventure through interactive games.                        </p>
+                    </div>
+                </SectionComponent>
+
+                <SectionComponent containerName="Testemonials" title="Testemonials">
+                    <div className="text-center mb-4" style={{color: 'white'}}>
+                        <p style={{fontSize: '24px'}}>
+                            Meet ByteSensei, your guide to a dynamic learning experience! With ByteSensei by your side, explore a world where education meets adventure through interactive games.                        </p>
+                    </div>
+
+
+                    <div className="d-flex flex-row"></div>
+                    <TestimonialCard>
+                    </TestimonialCard>
+
+                    <TestimonialCard>
+
+                    </TestimonialCard>
 
                 </SectionComponent>
 

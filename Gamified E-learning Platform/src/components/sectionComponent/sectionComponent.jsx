@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 const SectionComponent = ({ containerName,title, children }) => {
     return (
-        <div className="$containerName}  d-flex flex-column justify-content-center align-items-center" id={containerName}  >
-            <div className={title} id={title}>
+        <div className="$containerName} mt-5 d-flex flex-column justify-content-center align-items-center" id={containerName}  >
+            <div className={title} id={title} style={{ color: 'white' }}>
                 <h1>{title}</h1>
             </div>
 

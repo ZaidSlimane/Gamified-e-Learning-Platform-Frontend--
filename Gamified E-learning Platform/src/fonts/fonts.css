@@ -22,3 +22,8 @@
     src: url("Poppins-SemiBold.ttf") format('truetype');
 
 }
+
+@font-face {
+    font-family: 'pixel';
+    src: url("GlitchDemoRegular-2Oave.ttf") format('truetype');
+}

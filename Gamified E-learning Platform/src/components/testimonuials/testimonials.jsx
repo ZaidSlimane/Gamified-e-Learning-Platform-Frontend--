@@ -26,13 +26,12 @@ const TestimonialCard = ({Testimonial}) => {
 
     return (
         <div className="size shadow1 card-hover" style={{...cardStyle}}>
-            <div className="column-gap-0 g-0">
-                <div className="d-flex flex-column justify-content-center p-5">
-                    <div className="d-flex justify-content-end">
-                        <img src="/ci_double-quotes-l.svg" alt="Left SVG" style={{height: '100px'}}/>
-
-                    </div>
-                    <div className="star-rating">
+            <div className="d-flex justify-content-end p-2">
+                <img src="/ci_double-quotes-l.svg" alt="Left SVG" style={{height: '100px'}}/>
+            </div>
+            <div className="column-gap-0">
+                <div className="d-flex flex-column justify-content-center p-3">
+                    <div className="star-rating" style={{color: '#01F401', fontSize: '30px'}}>
                         &#9733; &#9733; &#9733; &#9733; &#9733;
                     </div>
                     <h3 style={{color: 'white'}}>
@@ -40,7 +39,7 @@ const TestimonialCard = ({Testimonial}) => {
                         Elit enim massa etiam neque laoreet lorem sed.
                     </h3>
 
-                    <div className="d-flex flex-column">
+                    <div className="d-flex flex-row justify-content-between " style={{color: '#01F401'}}>
                         <p>Zaid Slimane </p>
                         <p>Big Boss Manager</p>
                     </div>

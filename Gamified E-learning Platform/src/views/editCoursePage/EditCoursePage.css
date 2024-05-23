@@ -1,0 +1,32 @@
+.LA{
+    font-family: Inter;
+    font-weight: bold;
+    color: #01F401;
+    font-size: 19px;
+    letter-spacing: 2px;
+}
+
+.chapter-names{
+    font-size: 20px;
+}
+
+
+
+.column {
+    flex: 1;
+    text-align: center;
+    color: white;
+}
+
+.column-header {
+    color: #01F401;
+    margin-bottom: 10px;
+}
+
+.popUp{
+    height: 200px;
+}
+.popup-content{
+    background-color: transparent !important;
+    border-color: transparent !important;
+}

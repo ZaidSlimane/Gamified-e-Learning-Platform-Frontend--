@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: pixel;
   --startBackgroundColor: #142334;
   --endBackgroundColor: #040404;
   --vertical-gradient: linear-gradient(90deg, var(--startBackgroundColor), var(--endBackgroundColor));

@@ -6,6 +6,10 @@ import MessagesIcon from "../messagesIcon/MessagesIcon.jsx";
 import LogoutIcon from "../logoutIcon/LogoutIcon.jsx";
 import './SideNavBar.css';
 import axios from "axios";
+import CoursesIcon from "../coursesIcon/CoursesIcon.jsx";
+import QuestionIcon from "../questionIcon/QuestionIcon.jsx";
+import ProfileIcon from "../profileIcon/ProfileIcon.jsx";
+import LeaderboardIcon from "../leaderboardIcon/LeaderboardIcon.jsx";
 
 const SideNavBar = () => {
     const navigate = useNavigate();
@@ -26,13 +30,13 @@ const SideNavBar = () => {
         },
         {
             id: 'courses',
-            icon: <EnrolledIcon fill={location.pathname === '/courses' ? '#01F401' : '#868686'}/>,
+            icon: <CoursesIcon fill={location.pathname === '/courses' ? '#01F401' : '#868686'}/>,
             text: 'Courses',
             path: '/courses'
         },
         {
             id: 'questions',
-            icon: <EnrolledIcon fill={location.pathname === '/questions' ? '#01F401' : '#868686'}/>,
+            icon: <QuestionIcon fill={location.pathname === '/questions' ? '#01F401' : '#868686'}/>,
             text: 'Questions',
             path: '/questions'
         },
@@ -43,8 +47,20 @@ const SideNavBar = () => {
             path: '/messages'
         },
         {
+            id: 'profile',
+            icon: <ProfileIcon fill={location.pathname === '/updateProfile' ? '#01F401' : '#868686'}/>,
+            text: 'Profile',
+            path: '/updateProfile'
+        },
+        {
+            id: 'leaderboard',
+            icon: <LeaderboardIcon fill={location.pathname === '/leaderBoard' ? '#01F401' : '#868686'}/>,
+            text: 'Leaderboard',
+            path: '/leaderBoard'
+        },
+        {
             id: 'logout',
-            icon: <MessagesIcon fill={location.pathname === '/logout' ? '#01F401' : '#868686'}/>,
+            icon: <LogoutIcon fill={location.pathname === '/logout' ? '#01F401' : '#868686'}/>,
             text: 'Logout',
             path: '/logout'
         },

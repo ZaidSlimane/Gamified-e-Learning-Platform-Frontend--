@@ -6,6 +6,8 @@ import MessagesIcon from "../messagesIcon/MessagesIcon.jsx";
 import LogoutIcon from "../logoutIcon/LogoutIcon.jsx";
 import './TeacherSideNavBar.css';
 import axios from "axios";
+import ProfileIcon from "../profileIcon/ProfileIcon.jsx";
+import QuestionIcon from "../questionIcon/QuestionIcon.jsx";
 
 const TeacherSideNavBar = () => {
     const navigate = useNavigate();
@@ -13,8 +15,14 @@ const TeacherSideNavBar = () => {
 
     const navItems = [
         { id: 'teachercourses', icon: <EnrolledIcon fill={location.pathname === '/teacher/courses' ? '#01F401' : '#868686'} />, text: 'Courses', path: '/teacher/courses' },
-        { id: 'teacherquestions', icon: <EnrolledIcon fill={location.pathname === '/teacher/questions' ? '#01F401' : '#868686'} />, text: 'Questions', path: '/teacher/questions' },
+        { id: 'teacherquestions', icon: <QuestionIcon fill={location.pathname === '/teacher/questions' ? '#01F401' : '#868686'} />, text: 'Questions', path: '/teacher/questions' },
         { id: 'teachermessages', icon: <MessagesIcon fill={location.pathname === '/messages' ? '#01F401' : '#868686'} />, text: 'Messages', path: '/messages' },
+        {
+            id: 'profile',
+            icon: <ProfileIcon fill={location.pathname === '/updateProfile' ? '#01F401' : '#868686'}/>,
+            text: 'Profile',
+            path: '/updateProfile'
+        },
         { id: 'logout', icon: <MessagesIcon fill={location.pathname === '/logout' ? '#01F401' : '#868686'} />, text: 'Logout', path: '/logout' },
     ];
 

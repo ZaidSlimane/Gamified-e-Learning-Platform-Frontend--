@@ -50,14 +50,21 @@ function MessagesPage() {
             const token = getToken();
             const response = await axios.get(`http://127.0.0.1:8000/api/chatroom/${chatId}/messages`, {
                 headers: {
-                    Authorization: `Bearer ${token}` // Send token as bearer code
+                    Authorization: `Bearer ${token}`
                 }
             });
-            setMessages(response.data);
+
+            const messagesWithUsernames = await Promise.all(response.data.map(async (message) => {
+                const username = await fetchParticipantDetails(message.sender);
+                return { ...message, username };
+            }));
+
+            setMessages(messagesWithUsernames);
         } catch (error) {
             console.error('Error fetching messages:', error);
         }
-    }
+    };
+
 
     const handleChatOnClick = (chatId) => {
         setCurrentChat(chatId)
@@ -128,9 +135,9 @@ function MessagesPage() {
         if (currentChat) {
             const intervalId = setInterval(() => {
                 fetchMessages(currentChat);
-            }, 1000); // Fetch messages every 1 second
+            }, 1000);
 
-            return () => clearInterval(intervalId); // Cleanup interval on component unmount
+            return () => clearInterval(intervalId);
         }
     }, [currentChat]);
 
@@ -154,6 +161,31 @@ function MessagesPage() {
         }
     };
 
+    const fetchParticipantDetails = async (participantId) => {
+        try {
+            const token = getToken();
+            const participantResponse = await axios.get(`http://127.0.0.1:8000/api/chat_participants/${participantId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            const { user_id } = participantResponse.data;
+
+            const userResponse = await axios.get(`http://127.0.0.1:8000/api/chatParticipant/${user_id}/user`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            const user = userResponse.data[0];
+            return user.username;
+        } catch (error) {
+            console.error('Error fetching participant details:', error);
+            return 'Unknown User';
+        }
+    };
+
+
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             handleSendMessage();
@@ -174,28 +206,33 @@ function MessagesPage() {
                 <div className="chat-container">
                     <div className="chat-messages">
                         {messages.map((message, index) => (
-                            <div key={index} className={message.sender === chatId ? "received-message" : "sent-message"}>
-                                {message.content}
+                            <div key={index} className={message.sender === chatId ? "message-row received-message-container" : "sent-message-container"}>
+                                <div>
+                                    <div className="message-sender ps-2 pe-3 pb-2 text-white">{message.username}</div>
+                                    <div className="message-content" className={message.sender === chatId ? "received-message" : "sent-message"}>{message.content}</div>
+                                </div>
                             </div>
                         ))}
+
                         <div className="d-flex ms-5 message-send-container">
                             <div className="send-button me-5 pt-1">
-                                <PixelatdButton text={'SEND'} onClick={handleSendMessage}/> {/* Add onClick handler */}
+                                <PixelatdButton text={'SEND'} onClick={handleSendMessage} />
                             </div>
-                            <TextInput value={messageContent} onChange={(e) => setMessageContent(e.target.value)} onKeyDown={handleKeyDown} /> {/* Update input */}
+                            <TextInput value={messageContent} onChange={(e) => setMessageContent(e.target.value)} onKeyDown={handleKeyDown} />
                         </div>
                     </div>
                     <div className="chat-cards">
                         {chatRooms.map((chat, index) => (
                             <ChatCard key={index} courseName={chat.room_name} imageUrl={chat.imageUrl}
                                       participantsNumber={chat.participantsNumber}
-                                      onClick={() => handleChatOnClick(chat.id)}/>
+                                      onClick={() => handleChatOnClick(chat.id)} />
                         ))}
                     </div>
                 </div>
             </RootContainer>
         </div>
     );
-}
+};
 
 export default MessagesPage;
+

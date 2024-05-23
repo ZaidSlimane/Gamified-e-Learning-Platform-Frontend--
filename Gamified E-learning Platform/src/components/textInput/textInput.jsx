@@ -3,7 +3,7 @@ import './textInput.css';
 import '../../fonts/fonts.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import eye icons from Font Awesome
 
-const TextInput = ({ type, placeholder, value, onChange,onKeyDown  }) => {
+const TextInput = ({ type, placeholder, value, onChange, onKeyDown, autoComplete }) => {
     const [showPassword, setShowPassword] = React.useState(false);
 
     const togglePasswordVisibility = () => {
@@ -19,7 +19,7 @@ const TextInput = ({ type, placeholder, value, onChange,onKeyDown  }) => {
                 value={value}
                 onChange={onChange}
                 onKeyDown={onKeyDown}
-
+                autoComplete={autoComplete}
             />
             {type === 'password' && (
                 <div className="eye-icon-container" onClick={togglePasswordVisibility}>

@@ -20,8 +20,8 @@ function LoginPage() {
         setPassword(e.target.value);
     };
 
-    async function createTodayStatistics() {
-        const enrollmentEndpoint = 'http://127.0.0.1:8000/api/student/5/enrollments';
+    async function createTodayStatistics(userId) {
+        const enrollmentEndpoint = `http://127.0.0.1:8000/api/student/${userId}/enrollments`;
         const statisticsByEnrollmentAndDateEndpoint = 'http://127.0.0.1:8000/api/statistics/by-enrollment-and-date/';
         const statisticsEndpoint = 'http://127.0.0.1:8000/api/statistics/';
 
@@ -105,9 +105,10 @@ function LoginPage() {
             }
             console.log(groups)
             if (groups.includes(2)) {
-                await createTodayStatistics()
+                await createTodayStatistics(data.user.id)
                 localStorage.setItem('ROLE','STUDENT')
                 navigate('/student');
+                setuserData(data);
             } else if (groups.includes(3)) {
                 localStorage.setItem('ROLE','TEACHER')
                 console.log(localStorage.getItem('ROLE'))

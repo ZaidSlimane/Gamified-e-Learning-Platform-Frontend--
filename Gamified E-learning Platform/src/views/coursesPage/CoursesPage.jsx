@@ -136,7 +136,7 @@ function CoursesPage() {
                                     className="row g-0 navigation-header justify-content-between align-items-center mt-5"
                                     style={{marginBottom: '100px'}}>
                                     <div className="col-auto">
-                                        <img src="../../../public/logo.svg"/>
+                                        <img src="../../../public/logo.png" style={{width:"240px"}}/>
                                     </div>
                                     <div className="col-auto">
                                         <Navbar></Navbar>

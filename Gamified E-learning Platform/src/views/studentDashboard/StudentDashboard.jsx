@@ -157,8 +157,9 @@ function StudentDashboard() {
 
                 return {
                     courseName: course.courseName,
-                    progress: (enrollment.passed_chapter / chapters.length) * 100,
+                    progress: isNaN(enrollment.passed_chapter / chapters.length) ? 0 : (enrollment.passed_chapter / chapters.length) * 100,
                 };
+
             });
 
             const progress = await Promise.all(progressPromises);

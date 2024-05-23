@@ -66,6 +66,7 @@ function LandingPage() {
                 <div className="row g-0 navigation-header justify-content-between align-items-center mt-5"
                      style={{ marginBottom: '100px', position: 'relative', zIndex: 1 }}>
                     <div className="col-auto">
+
                         <img src="../../../public/logo.png" className="logo" height='100px' />
                     </div>
                     <div className="col-auto">

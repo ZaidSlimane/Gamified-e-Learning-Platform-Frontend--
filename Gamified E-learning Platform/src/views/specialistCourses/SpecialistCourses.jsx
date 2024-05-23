@@ -7,6 +7,7 @@ import TeacherCourseCard from "../../components/teacherCourseCard/TeacherCourseC
 import './SpecialistCourses.css'
 import SpecialistCourseCard from "../../components/specialistCourseCard/SpecialistCourseCard.jsx";
 import SpecialistSideNavBar from "../../components/specialistSideNavBar/SpecialistSideNavBar.jsx";
+import PixelatdButton from "../../components/pixelatedButton/pixelatedButton.jsx";
 
 function SpecialistCourses() {
 
@@ -71,11 +72,17 @@ function SpecialistCourses() {
     const colors = [["#F99ECF", "#FF5CDB"], ["#70D1C6", "#3F96E6"], ["#70D1C6", "#3F96E6"], ["#F99ECF", "#FF5CDB"]];
 
 
+    const handleCourseOnClick = (courseId) => {
+        navigate(`course/${courseId}`)
+    }
+    const handleAddCourseOnClick = () => {
+        navigate(`addCourse`)
+    }
     return (
 
         <RootContainer>
             <SpecialistSideNavBar/>
-            <div  style={{marginLeft: '160px'}}>
+            <div style={{marginLeft: '160px'}}>
                 <div className="content">
                     <div className="mt-4 d-flex align-items-center justify-content-between">
                         {userData && (
@@ -102,10 +109,17 @@ function SpecialistCourses() {
                                 courseName={course.courseName}
                                 startColor={colors[index % colors.length][0]}
                                 endColor={colors[index % colors.length][1]}
+                                onClick={() => handleCourseOnClick(course.id)}
                             />
                         </div>
-                    ))}</div>
+                    ))}
+                </div>
+                <div className="d-flex justify-content-center mb-4 mt-4 ms"     >
+                    <PixelatdButton text="Add course" onClick={handleAddCourseOnClick}/>
+
+                </div>
             </div>
+
 
         </RootContainer>);
 }

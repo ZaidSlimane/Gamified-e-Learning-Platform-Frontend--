@@ -116,7 +116,7 @@ function ChapterPage() {
             <RootContainer>
                 <div className="d-flex justify-content-between align-items-center mt-5">
                     <div className="p-2">
-                        <img src="../../../public/logo.svg"/>
+                        <img src="../../../public/logo.png" style={{width:"240px"}}/>
                     </div>
                     <div className="d-flex justify-content-center p-2 flex-grow-1">
                         <Navbar></Navbar>

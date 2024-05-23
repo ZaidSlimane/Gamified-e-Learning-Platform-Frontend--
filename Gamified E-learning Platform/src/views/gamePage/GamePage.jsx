@@ -40,6 +40,9 @@ function GamePage() {
         const response = await fetch(`http://127.0.0.1:8000/api/statistics/by-enrollment-and-date/${enrollmentId}/${today}`);
         const stat = await response.json();
         setStatistic(stat);
+        console.log('statstatstatstatstatstatstatstatstatstatstatstatstat '+ enrollmentId+'sd0' + today)
+
+        console.log(stat)
         return stat;
     }
 

@@ -57,14 +57,11 @@
     border-bottom-left-radius: 18px;
     border-bottom-right-radius: 4px;
     padding-left: 30px;
-    align-self: end;
-    text-align: end;
+    align-self: flex-end; /* Updated */
+    text-align: right; /* Updated */
     padding-right: 18px;
-
-
-
-
 }
+
 
 .sent-message {
     background-color: white;
@@ -81,6 +78,19 @@
     padding-left: 18px;
 
 }
+.received-message-container{
+    align-self: end;
+    text-align: end;
+}
+
+.message-row {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+
+
 
 .root-container-full-width .root-container {
     width: 100%;

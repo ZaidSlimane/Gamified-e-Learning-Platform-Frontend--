@@ -35,12 +35,20 @@ function EnrollPage() {
 
     const {courseId} = useParams();
     const [course, setCourse] = useState(null);
+    const [chatPaticipantId, setChatPaticipantId] = useState(null);
+
     const [supervisor, setSupervisor] = useState(null);
     const [supervisorJob, setSupervisorJob] = useState(null);
     const [chapters, setChapters] = useState([]);
     const [enrolled, setEnrolled] = useState(null);
     const [currentChapterId,setcurrentChapterId] = useState(null);
 
+
+    async function getChatParticipantId(userId) {
+        const chatParticpData = await axios.get(`http://127.0.0.1:8000/api/user/${userId}/chatId`)
+        setChatPaticipantId(chatParticpData.data[0].id)
+
+    }
 
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/api/courses/${courseId}`)
@@ -89,6 +97,8 @@ function EnrollPage() {
             const data = roleResponse.data;
             if (data.user.groups.length > 0) {
                 setuserData(data);
+                getChatParticipantId(data.user.id)
+
                 setloggedIn(true);
                 await checkEnrolled(data.user.id)
             } else {
@@ -124,6 +134,23 @@ function EnrollPage() {
     }
 
 
+    async function addToChatroom(chatroomId) {
+        const url = `http://127.0.0.1:8000/api/chatrooms/${chatroomId}/add-participant/`;
+        const data = {
+            "participant_id": chatPaticipantId
+        };
+        console.log(data)
+        console.log("chatroom"+chatroomId)
+
+        try {
+            const response = await axios.patch(url, data);
+            console.log('Success ad to chat:', response.data);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+
     async function enroll(courseId, studentId) {
         try {
             const token = getToken();
@@ -139,7 +166,39 @@ function EnrollPage() {
             if (response.status === 201) {
                 console.log("Enrollment successful");
                 setEnrolled(true);
-                window.location.reload(false);
+                const today = new Date().toISOString().split('T')[0];
+                const enrollementId = response.data.id
+                console.log(enrollementId)
+                const statisticsData = {
+                    enrollment: enrollementId,
+                    date: today,
+                    points: 0,
+                    passed_chapters: 0
+                };
+                const statisticsEndpoint = 'http://127.0.0.1:8000/api/statistics/';
+                await fetch(statisticsEndpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(statisticsData)
+                });
+                const response1 = await axios.get(`http://127.0.0.1:8000/api/course/${courseId}/chatroom`)
+                addToChatroom(response1.data[0].id)
+                const url2 = `http://127.0.0.1:8000/api/chatrooms/${response1.data[0].id}/add-participant/`;
+                const data2 = {
+                    "participant_id": chatPaticipantId
+                };
+
+
+                try {
+                    const response2 = await axios.patch(url2, data2);
+                    console.log('Success ad to chat:', response.data);
+                    window.location.reload(false);
+
+                } catch (error) {
+                    console.error('Error:', error);
+                }
 
             } else {
                 console.log("Enrollment failed");
@@ -174,10 +233,9 @@ function EnrollPage() {
     return (
         <>
             <RootContainer>
-                <div className="row g-0 navigation-header justify-content-between align-items-center mt-5 mb-5"
-                >
+                <div className="row g-0 navigation-header justify-content-between align-items-center mt-5 mb-5"                >
                     <div className="col-auto">
-                        <img src="../../../public/logo.svg"/>
+                        <img src="../../../public/logo.png" style={{width:"240px"}}/>
 
                     </div>
                     <div className={"col  d-flex justify-content-center"} style={{marginRight: "20px"}}>

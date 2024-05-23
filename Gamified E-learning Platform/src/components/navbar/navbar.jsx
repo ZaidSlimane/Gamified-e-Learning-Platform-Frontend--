@@ -10,6 +10,9 @@ const Navbar =  () => {
     const handleCoursesClick = () => {
         navigate("/courses"); // Navigate to /login when Sign in is clicked
     }
+    const handleLeaderboardClick = () => {
+        navigate("/Leaderboard"); // Navigate to /login when Sign in is clicked
+    }
     return (
         <>
 
@@ -24,7 +27,7 @@ const Navbar =  () => {
                     </li>
 
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Universities</a>
+                        <a className="nav-link" onClick={handleLeaderboardClick}>Leaderboard</a>
                     </li>
 
                     <li className="nav-item">

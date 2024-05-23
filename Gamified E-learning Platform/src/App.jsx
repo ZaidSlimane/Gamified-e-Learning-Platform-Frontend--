@@ -19,6 +19,12 @@ import TeacherQuestions from "./views/teacherQuestions/TeacherQuestions.jsx";
 import AnswerQuestions from "./views/answerQuestion/AnswerQuestions.jsx";
 import MessagesPage from "./views/messagesPage/MessagesPage.jsx";
 import SpecialistCourses from "./views/specialistCourses/SpecialistCourses.jsx";
+import EditCoursePage from "./views/editCoursePage/EditCoursePage.jsx";
+import UpdateChapter from "./views/updateChapter/UpdateChapter.jsx";
+import AddCourse from "./views/addCourse/AddCourse.jsx";
+import AddChapter from "./views/addChapter/AddChapter.jsx";
+import UpdateProfile from "./views/updateProfile/UpdateProfile.jsx";
+import LeaderBoard from "./views/leaderBoard/LeaderBoard.jsx";
 
 
 function App() {
@@ -45,6 +51,14 @@ function App() {
                 <Route path="/answer/:questionId" element={<AnswerQuestions/>}/>
                 <Route path="/messages" element={<MessagesPage/>}/>
                 <Route path="/specialist" element={<SpecialistCourses/>}/>
+                <Route path="/specialist/course/:courseId" element={<EditCoursePage/>}/>
+                <Route path="/specialist/chapter/:chapterId" element={<UpdateChapter/>}/>
+                <Route path="/specialist/addCourse" element={<AddCourse/>}/>
+                <Route path="/specialist/course/:courseId/addChapter" element={<AddChapter/>}/>
+                <Route path="/updateProfile" element={<UpdateProfile/>}/>
+                <Route path="/leaderBoard" element={<LeaderBoard/>}/>
+
+
 
             </Routes>
         </Router>

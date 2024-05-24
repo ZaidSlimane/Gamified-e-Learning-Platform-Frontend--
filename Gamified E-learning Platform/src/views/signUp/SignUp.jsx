@@ -180,7 +180,7 @@ function SignUp() {
                     <br/>
                     <br/>
                     <div className="input-wrapper">
-                        <p className="input-header">Location (Optional)</p>
+                        <p className="input-header">Grade (Optional)</p>
                         <TextInput placeholder="region" value={grade} onChange={(e) => setGrade(e.target.value)}/>
                     </div>
                     <br/>

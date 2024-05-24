@@ -155,8 +155,8 @@ function LandingPage() {
                         </p>
                     </div>
                     <div className="d-flex flex-row justify-content-between">
-                        <TestimonialCard />
-                        <TestimonialCard />
+                        <TestimonialCard Testimonial={"This course made learning HTML and CSS a breeze! Earning badges for completing challenges kept me motivated, and the quizzes were actually fun. Thanks!"}/>
+                        <TestimonialCard Testimonial={"Who knew learning Python could be so engaging? This course gamified the process perfectly, with quests and leaderboards that made me want to learn more. I highly recommend it!"}/>
                     </div>
                 </SectionComponent>
 
@@ -178,6 +178,7 @@ function LandingPage() {
                     }}
                 />
             </RootContainer>
+            <div className="mb-5"></div>
             <Footer />
         </>
     );

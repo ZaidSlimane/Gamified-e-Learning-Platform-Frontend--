@@ -41,7 +41,9 @@ function EnrollPage() {
     const [supervisorJob, setSupervisorJob] = useState(null);
     const [chapters, setChapters] = useState([]);
     const [enrolled, setEnrolled] = useState(null);
-    const [currentChapterId,setcurrentChapterId] = useState(null);
+    const [enrollmentId, setEnrollmentId] = useState(null);
+
+    const [currentChapterId, setcurrentChapterId] = useState(null);
 
 
     async function getChatParticipantId(userId) {
@@ -125,7 +127,7 @@ function EnrollPage() {
             console.log("Is Enrolled:", isEnrolled); // Add this line for debugging
 
             setEnrolled(isEnrolled);
-            if (isEnrolled){
+            if (isEnrolled) {
                 getCurrentChapter(Enrollmentdata.course)
             }
         } catch (error) {
@@ -140,7 +142,7 @@ function EnrollPage() {
             "participant_id": chatPaticipantId
         };
         console.log(data)
-        console.log("chatroom"+chatroomId)
+        console.log("chatroom" + chatroomId)
 
         try {
             const response = await axios.patch(url, data);
@@ -220,7 +222,7 @@ function EnrollPage() {
 
     const handleContinueOnClick = async () => {
         const response = await axios.get(`http://127.0.0.1:8000/api/enrollments/${enrolledCourse.id}`);
-        const currentChapter = response.data.passed_chapter +1
+        const currentChapter = response.data.passed_chapter + 1
         const chaptersResponse = await axios.get(`http://127.0.0.1:8000/api/courses/${courseId}/chapters`)
         const chapters = chaptersResponse.data
         chapters.sort((a, b) => a.id - b.id);
@@ -229,13 +231,17 @@ function EnrollPage() {
 
     }
 
+    const handleLeaveReviewOnClick = () =>{
+        navigate(`/leaveReview/${enrolledCourse.id}`)
+    }
+
 
     return (
         <>
             <RootContainer>
-                <div className="row g-0 navigation-header justify-content-between align-items-center mt-5 mb-5"                >
+                <div className="row g-0 navigation-header justify-content-between align-items-center mt-5 mb-5">
                     <div className="col-auto">
-                        <img src="../../../public/logo.png" style={{width:"240px"}}/>
+                        <img src="../../../public/logo.png" style={{width: "240px"}}/>
 
                     </div>
                     <div className={"col  d-flex justify-content-center"} style={{marginRight: "20px"}}>
@@ -301,10 +307,7 @@ function EnrollPage() {
                                     })}
 
 
-                                    {/*{chapters.map((chapter, index) => (*/}
-                                    {/*    <p key={index}*/}
-                                    {/*       className="ps-2 text-start  paragraph">· {chapter.chapterName}</p>*/}
-                                    {/*))}*/}
+                                
 
                                 </div>
                             </div>
@@ -314,7 +317,12 @@ function EnrollPage() {
                 </div>
                 <div className="d-flex justify-content-center mt-4 mb-5">
                     {enrolled ? (
-                        <PixelatdButton text="KEEP MAKING PROGRESS" onClick={handleContinueOnClick}></PixelatdButton>
+                        <div>
+                            <PixelatdButton text="KEEP MAKING PROGRESS"
+                                            onClick={handleContinueOnClick}></PixelatdButton>
+                            <span className="ms-5"/>
+                            <PixelatdButton text="LEAVE A REVIEW" onClick={handleLeaveReviewOnClick }></PixelatdButton>
+                        </div>
                     ) : (
                         <PixelatdButton text="ENROLL" onClick={handleEnrollOnClick}></PixelatdButton>
                     )}
@@ -322,4 +330,5 @@ function EnrollPage() {
             </RootContainer>
         </>);
 }
+
 export default EnrollPage;

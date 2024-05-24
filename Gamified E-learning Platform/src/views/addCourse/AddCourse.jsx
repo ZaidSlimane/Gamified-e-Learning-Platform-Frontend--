@@ -4,6 +4,7 @@ import TextInput from "../../components/textInput/textInput.jsx";
 import './AddCourse.css';
 import PixelatdButton from "../../components/pixelatedButton/pixelatedButton.jsx";
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
 
 function AddCourse() {
     const [course, setCourse] = useState({
@@ -52,7 +53,10 @@ function AddCourse() {
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
-                // Optionally, redirect or clear the form here
+                const response5 = axios.post('http://127.0.0.1:8000/api/chatrooms/',{
+                    'room_name':data.courseName,
+                    'course': data.id
+                })
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -142,3 +146,7 @@ function AddCourse() {
 }
 
 export default AddCourse;
+
+
+
+

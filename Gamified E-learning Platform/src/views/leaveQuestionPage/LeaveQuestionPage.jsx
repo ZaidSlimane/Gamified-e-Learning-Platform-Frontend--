@@ -93,6 +93,7 @@ function LeaveQuestionPage() {
         } catch (error) {
             console.error('Submit question error:', error);
         }
+        navigate(`/courses/${courseId}/chapter/${chapterId}`)
     }
 
 

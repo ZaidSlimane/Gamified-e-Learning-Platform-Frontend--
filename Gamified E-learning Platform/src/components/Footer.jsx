@@ -14,9 +14,9 @@ function Footer() {
 
     return (
         <footer style={footerStyle}>
-            <div className="d-flex flex-row justify-content-between">
+            <div className="d-flex flex-row justify-content-center">
                 <div className="d-flex flex-column">
-                    <div>
+                    <div className="d-flex justify-content-center mb-2">
                         <img src="/logo.png" alt="Left SVG" style={{height: '50px'}}/>
                     </div>
                     <div>
@@ -44,14 +44,7 @@ function Footer() {
                         </ul>
                     </div>
                 </div>
-                <div className="d-flex flex-column">
-                    <p>Get the freshest news from us</p>
-                    <div className="d-flex flex-row">
-                        <input/>
-                        <div style={{width: '20px'}}></div>
-                        <PixelatdButton text="Subscribe"></PixelatdButton>
-                    </div>
-                </div>
+
             </div>
             <p className="text-center">@2024</p>
         </footer>

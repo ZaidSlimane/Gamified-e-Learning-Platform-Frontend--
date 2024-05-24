@@ -46,9 +46,9 @@ img {
 /**/
 button {
     border: none;
-    font-size: 24px;
+    font-size: 20px !important;
     text-transform: uppercase;
-    font-family: 'VT323', monospace;
+    font-family: 'VT323', monospace !important;
     cursor: pointer;
     transition: transform .05s;
 }

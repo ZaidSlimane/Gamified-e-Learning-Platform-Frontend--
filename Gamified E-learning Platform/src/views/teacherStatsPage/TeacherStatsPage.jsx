@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import RootContainer from "../../utils/rootContainerModule.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
@@ -6,6 +6,14 @@ import TeacherSideNavBar from "../../components/teacherSideNavBar/TeacherSideNav
 import SearchBar from "../../components/searchBar/SearchBar.jsx";
 import LineChart from "../../components/lineChart/LineChart.jsx";
 import QuestionCard from "../../components/questionCard/QuestionCard.jsx";
+
+
+const colors = [
+    '#FF8666', '#FFC266', '#E6FF66', '#8CFF66', '#66FF8C',
+    '#66FFC2', '#66E6FF', '#668CFF', '#8666FF', '#C266FF',
+    '#FF66E6', '#FF668C', '#FF7F75', '#FFD850', '#B7FF58',
+    '#9FFF00', '#80E0D0', '#3E90FF', '#A370DB', '#FF85B8'
+];
 
 function TeacherStatsPage() {
     const { studentId, courseId } = useParams();
@@ -19,6 +27,9 @@ function TeacherStatsPage() {
     const [totalChapters, setTotalChapters] = useState(0);
     const [answeredQuestions, setAnsweredQuestions] = useState([]);
     const [notAnsweredQuestions, setNotAnsweredQuestions] = useState([]);
+    function getRandomColor() {
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
 
     const fetchTotalPassedChapters = async () => {
         if (statisticsData && statisticsData.length > 0) {
@@ -27,6 +38,15 @@ function TeacherStatsPage() {
             setTotalPassedChapters(response.data.passed_chapter);
         }
     };
+    const randomColors = useMemo(() => {
+        const colorMap = new Map();
+        return (label) => {
+            if (!colorMap.has(label)) {
+                colorMap.set(label, getRandomColor());
+            }
+            return colorMap.get(label);
+        };
+    }, []);
 
     const fetchTotalChapters = async () => {
         const response = await axios.get(`http://127.0.0.1:8000/api/courses/${courseId}/chapters`);
@@ -130,7 +150,7 @@ function TeacherStatsPage() {
             {
                 label: 'Points',
                 data: statisticsData.slice(-10).map(item => item.points),
-                borderColor: '#63ABFD',
+                borderColor: randomColors(5),
             },
         ]
     };
@@ -141,7 +161,7 @@ function TeacherStatsPage() {
             {
                 label: 'Passed Chapters',
                 data: statisticsData.slice(-10).map(item => item.passed_chapters),
-                borderColor: '#E697FF',
+                borderColor: randomColors(5),
             },
         ]
     };

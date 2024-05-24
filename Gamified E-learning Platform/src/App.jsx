@@ -25,6 +25,8 @@ import AddCourse from "./views/addCourse/AddCourse.jsx";
 import AddChapter from "./views/addChapter/AddChapter.jsx";
 import UpdateProfile from "./views/updateProfile/UpdateProfile.jsx";
 import LeaderBoard from "./views/leaderBoard/LeaderBoard.jsx";
+import LeaveReview from "./views/leaveReview/LeaveReview.jsx";
+import ReviewsPage from "./views/reviewsPage/ReviewsPage.jsx";
 
 
 function App() {
@@ -57,6 +59,8 @@ function App() {
                 <Route path="/specialist/course/:courseId/addChapter" element={<AddChapter/>}/>
                 <Route path="/updateProfile" element={<UpdateProfile/>}/>
                 <Route path="/leaderBoard" element={<LeaderBoard/>}/>
+                <Route path="/leaveReview/:enrollmentId" element={<LeaveReview/>}/>
+                <Route path="/reviews" element={<ReviewsPage/>}/>
 
 
 

@@ -25,7 +25,7 @@ const TestimonialCard = ({Testimonial}) => {
 
 
     return (
-        <div className="size shadow1 card-hover" style={{...cardStyle}}>
+        <div className="size shadow1 card-hover hh" style={{...cardStyle}}>
             <div className="d-flex justify-content-end p-2">
                 <img src="/ci_double-quotes-l.svg" alt="Left SVG" style={{height: '100px'}}/>
             </div>
@@ -35,8 +35,7 @@ const TestimonialCard = ({Testimonial}) => {
                         &#9733; &#9733; &#9733; &#9733; &#9733;
                     </div>
                     <h3 style={{color: 'white'}}>
-                        Lorem ipsum dolor sit amet consectetur. Consequat auctor consectetur nunc vitae dolor blandit.
-                        Elit enim massa etiam neque laoreet lorem sed.
+                        {Testimonial}
                     </h3>
 
                     <div className="d-flex flex-row justify-content-between " style={{color: '#01F401'}}>

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useMemo} from "react";
 import {ProgressBar} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import RootContainer from "../../utils/rootContainerModule.jsx";
@@ -7,7 +7,18 @@ import "./StudentDashboard.css";
 import LineChart from "../../components/lineChart/LineChart.jsx";
 import SideNavBar from "../../components/sideNavBar/SideNavBar";
 import SearchBar from "../../components/searchBar/SearchBar.jsx";
-import QuestionCard from "../../components/questionCard/QuestionCard.jsx";  // Import the SideNavBar component
+import QuestionCard from "../../components/questionCard/QuestionCard.jsx";
+
+const colors = [
+    '#FF8666', '#FFC266', '#E6FF66', '#8CFF66', '#66FF8C',
+    '#66FFC2', '#66E6FF', '#668CFF', '#8666FF', '#C266FF',
+    '#FF66E6', '#FF668C', '#FF7F75', '#FFD850', '#B7FF58',
+    '#9FFF00', '#80E0D0', '#3E90FF', '#A370DB', '#FF85B8'
+];
+
+function getRandomColor() {
+    return colors[Math.floor(Math.random() * colors.length)];
+}
 
 function StudentDashboard() {
     const navigate = useNavigate();
@@ -18,6 +29,16 @@ function StudentDashboard() {
     const [lineChartData, setLineChartData] = useState({labels: [], datasets: []});
     const [chapterProgressData, setChapterProgressData] = useState({labels: [], datasets: []});
 
+    // Memoize the colors to ensure they are set only once
+    const randomColors = useMemo(() => {
+        const colorMap = new Map();
+        return (label) => {
+            if (!colorMap.has(label)) {
+                colorMap.set(label, getRandomColor());
+            }
+            return colorMap.get(label);
+        };
+    }, []);
 
     useEffect(() => {
         checkLoggedIn();
@@ -40,11 +61,9 @@ function StudentDashboard() {
                 setUserData(data);
                 setLoggedIn(true);
                 getStatistics(data.user.id);
-                getCourseProgress(data.user.id)
+                getCourseProgress(data.user.id);
                 getCourseStatistics(data.user.id);
-                getChapterProgress(data.user.id)
-
-
+                getChapterProgress(data.user.id);
             } else {
                 setLoggedIn(false);
                 navigate('/login');
@@ -91,7 +110,7 @@ function StudentDashboard() {
                 return {
                     label: course.courseName,
                     data: chaptersPassed,
-                    borderColor: '#63ABFD',  // Replace this with the actual color for this course
+                    borderColor: randomColors(course.courseName),
                 };
             });
 
@@ -138,7 +157,7 @@ function StudentDashboard() {
     // Add these state variables at the beginning of your component
     const [courseProgress, setCourseProgress] = useState([]);
 
-// Add this function to your component
+    // Add this function to your component
     async function getCourseProgress(userId) {
         try {
             const token = getToken();
@@ -159,7 +178,6 @@ function StudentDashboard() {
                     courseName: course.courseName,
                     progress: isNaN(enrollment.passed_chapter / chapters.length) ? 0 : (enrollment.passed_chapter / chapters.length) * 100,
                 };
-
             });
 
             const progress = await Promise.all(progressPromises);
@@ -201,7 +219,7 @@ function StudentDashboard() {
                 return {
                     label: course.courseName,
                     data: points,
-                    borderColor: '#63ABFD',  // Replace this with the actual color for this course
+                    borderColor: randomColors(course.courseName),  // Use the memoized random color
                 };
             });
 
@@ -219,32 +237,6 @@ function StudentDashboard() {
             console.error('Error fetching course statistics:', error);
         }
     }
-
-
-    // const lineChartData = {
-    //     labels: ['9', '10', '11', '12', '14', '15', '16'],
-    //     datasets: [
-    //         {
-    //             label: 'Python',
-    //             data: [20, 300, 100, 90, 60, 70, 90],
-    //             borderColor: '#63ABFD',
-    //         },
-    //         {
-    //             label: 'Mobile dev',
-    //             data: [120, 0, 100, 120, 300, 200, 20],
-    //             borderColor: '#E697FF',
-    //         },
-    //         {
-    //             label: 'Web dev',
-    //             data: [20, 0, 10, 20, 30, 15, 5],
-    //             borderColor: '#FFA5CB',
-    //         }, {
-    //             label: 'Cyber security',
-    //             data: [200, 250, 100, 80, 60, 40, 70],
-    //             borderColor: '#FEC400',
-    //         },
-    //     ]
-    // };
 
     return (
         <>
@@ -317,7 +309,6 @@ function StudentDashboard() {
             </RootContainer>
         </>
     );
-
 }
 
 export default StudentDashboard;

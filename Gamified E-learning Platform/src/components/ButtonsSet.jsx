@@ -29,7 +29,7 @@ const ButtonsSet = () => {
 
             <div className={"d-flex flex-column justify-content-center"}>
 
-            <div style={{position: "relative", left:"145x", marginBottom:"10px"}}>
+            <div className="d-flex justify-content-center">
                 <img
                     src={'/up.svg'}
                     style={circleStyle}
